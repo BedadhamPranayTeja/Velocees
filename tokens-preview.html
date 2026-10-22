@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VD Haute Parfumerie — Brand Tokens & Favicon Showcase</title>
+  
+  <!-- Favicon Links Generated from fav.jpg -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Google Fonts: Cormorant Garamond, Montserrat, Pinyon Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="tokens.css">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bordeaux-950);
+      background-image: var(--gradient-velvet);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header & Brand Identity Banner */
+    header {
+      padding: 60px 0 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .brand-mark {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      box-shadow: 0 0 35px rgba(238, 202, 142, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+      border: 1.5px solid var(--border-gold-medium);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bordeaux-900);
+      transition: var(--transition-smooth);
+    }
+
+    .brand-mark:hover {
+      transform: scale(1.05);
+      border-color: var(--color-gold-300);
+      box-shadow: var(--glow-gold-lg);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-tag {
+      font-family: var(--font-script);
+      font-size: 2rem;
+      color: var(--color-gold-300);
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .brand-subtitle {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--color-text-secondary);
+      opacity: 0.85;
+    }
+
+    /* Section styling */
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--color-gold-200);
+      margin: 50px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-gold-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title span {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-text-muted);
+    }
+
+    /* Swatches Grid */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .swatch-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold-medium);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), var(--glow-gold-sm);
+    }
+
+    .swatch-preview {
+      height: 110px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .swatch-info {
+      padding: 16px;
+    }
+
+    .swatch-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swatch-role {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-bottom: 10px;
+    }
+
+    .swatch-values {
+      font-family: monospace;
+      font-size: 0.78rem;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 8px 10px;
+      border-radius: var(--radius-xs);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-gold-200);
+      cursor: pointer;
+      user-select: all;
+    }
+
+    .swatch-values:hover {
+      background: rgba(238, 202, 142, 0.1);
+      border-color: var(--border-gold-subtle);
+    }
+
+    /* Favicon Verification Box */
+    .favicon-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .favicon-item {
+      background: var(--gradient-glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .favicon-item .icon-wrapper {
+      width: 64px;
+      height: 64px;
+      background: #000;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-gold-subtle);
+      flex-shrink: 0;
+    }
+
+    .favicon-item h4 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--color-gold-300);
+      margin-bottom: 4px;
+    }
+
+    .favicon-item p {
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* Live Perfume Card Mockup Preview */
+    .perfume-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .perfume-card {
+      background: var(--gradient-glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      padding: 28px;
+      position: relative;
+      transition: var(--transition-smooth);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .perfume-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-gold-medium);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), var(--glow-gold-sm);
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(238, 202, 142, 0.12);
+      color: var(--color-gold-300);
+      border: 1px solid var(--border-gold-subtle);
+      margin-bottom: 16px;
+    }
+
+    .perfume-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--color-text-primary);
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .perfume-notes {
+      font-size: 0.82rem;
+      color: var(--color-gold-400);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .perfume-desc {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-gold-subtle);
+      padding-top: 20px;
+    }
+
+    .price {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--color-gold-200);
+    }
+
+    .btn-gold {
+      background: var(--gradient-gold);
+      color: var(--color-bordeaux-950);
+      border: none;
+      padding: 10px 22px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: var(--radius-xs);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      box-shadow: 0 4px 15px rgba(238, 202, 142, 0.25);
+    }
+
+    .btn-gold:hover {
+      box-shadow: 0 0 25px rgba(238, 202, 142, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Code Snippet Box */
+    .code-box {
+      background: #0d0102;
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      overflow-x: auto;
+      font-family: 'Consolas', monospace;
+      font-size: 0.85rem;
+      color: #e6c8a0;
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+
+    .code-box code {
+      color: #9cdcfe;
+    }
+
+    .code-box .selector {
+      color: #d7ba7d;
+    }
+
+    .code-box .property {
+      color: #9cdcfe;
+    }
+
+    .code-box .val {
+      color: #ce9178;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="brand-mark">
+        <img src="fav.jpg" alt="VD Monogram Master Favicon">
+      </div>
+      <span class="brand-tag">Maison de Parfums</span>
+      <h1>Velocees &bull; VD</h1>
+      <p class="brand-subtitle">Design System Tokens &bull; Extracted Color Harmony</p>
+    </header>
+
+    <!-- SECTION 1: CORE BRAND PALETTE -->
+    <section>
+      <div class="section-title">
+        Master Color Tokens
+        <span>Extracted Directly from fav.jpg</span>
+      </div>
+
+      <div class="swatches-grid">
+        <!-- Burgundy Master -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #2b040a;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Bordeaux Velvet (Master)</div>
+            <div class="swatch-role">Primary Master Background</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #2b040a</span>
+              <span>RGB: 43, 4, 10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crimson Noir Base -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #100204;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Crimson Noir</div>
+            <div class="swatch-role">Midnight Page Canvas</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #100204</span>
+              <span>RGB: 16, 2, 4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elevated Bordeaux Surface -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #3a060f;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Imperial Wine</div>
+            <div class="swatch-role">Glass Card & Surface Tint</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #3a060f</span>
+              <span>RGB: 58, 6, 15</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Champagne Gold -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #eeca8e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color: #eeca8e;">Champagne Gold (Master)</div>
+            <div class="swatch-role">VD Monogram Signature Gold</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #eeca8e</span>
+              <span>RGB: 238, 202, 142</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gold Highlight -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #f7dfa6;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color: #f7dfa6;">Radiant Gold Highlight</div>
+            <div class="swatch-role">Luminance & Glow Peaks</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #f7dfa6</span>
+              <span>RGB: 247, 223, 166</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Antique Metallic Gold -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #c59b58;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color: #c59b58;">Antique Burnished Gold</div>
+            <div class="swatch-role">Borders & Metallic Gradient Edge</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #c59b58</span>
+              <span>RGB: 197, 155, 88</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Silk Alabaster Text -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #fcf8f2; border: 1px solid rgba(255,255,255,0.1);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Silk Ivory</div>
+            <div class="swatch-role">High-Contrast Editorial Typography</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #fcf8f2</span>
+              <span>RGB: 252, 248, 242</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cashmere Secondary -->
+        <div class="swatch-card">
+          <div class="swatch-preview" style="background-color: #d8c2b5;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cashmere Linen</div>
+            <div class="swatch-role">Secondary Copy & Subtitles</div>
+            <div class="swatch-values" title="Click to copy">
+              <span>HEX: #d8c2b5</span>
+              <span>RGB: 216, 194, 181</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: FAVICON ARTIFACTS VERIFICATION -->
+    <section>
+      <div class="section-title">
+        Generated Favicon Assets
+        <span>Multi-resolution ready for browser & mobile</span>
+      </div>
+
+      <div class="favicon-showcase">
+        <div class="favicon-item">
+          <div class="icon-wrapper">
+            <img src="favicon-16x16.png" width="16" height="16" alt="16x16 Favicon">
+          </div>
+          <div>
+            <h4>favicon-16x16.png</h4>
+            <p>16&times;16 px &bull; Standard browser tab icon</p>
+          </div>
+        </div>
+
+        <div class="favicon-item">
+          <div class="icon-wrapper">
+            <img src="favicon-32x32.png" width="32" height="32" alt="32x32 Favicon">
+          </div>
+          <div>
+            <h4>favicon-32x32.png</h4>
+            <p>32&times;32 px &bull; High-DPI retina browser icon</p>
+          </div>
+        </div>
+
+        <div class="favicon-item">
+          <div class="icon-wrapper">
+            <img src="apple-touch-icon.png" width="56" height="56" style="border-radius: 8px;" alt="Apple Touch Icon">
+          </div>
+          <div>
+            <h4>apple-touch-icon.png</h4>
+            <p>180&times;180 px &bull; iOS & Android home screen icon</p>
+          </div>
+        </div>
+
+        <div class="favicon-item">
+          <div class="icon-wrapper">
+            <img src="favicon.ico" width="32" height="32" alt="Favicon ICO">
+          </div>
+          <div>
+            <h4>favicon.ico</h4>
+            <p>Multi-resolution embedded ICO package</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: APPLIED LUXURY PERFUME COMPONENT PREVIEW -->
+    <section>
+      <div class="section-title">
+        Haute Parfumerie Component Styling
+        <span>Previewing tokens in an e-commerce context</span>
+      </div>
+
+      <div class="perfume-preview-grid">
+        <!-- Perfume Item 1 -->
+        <div class="perfume-card">
+          <span class="card-badge">Signature Extrait</span>
+          <h3 class="perfume-title">Velour Noir</h3>
+          <p class="perfume-notes">Black Rose &bull; Rare Oud &bull; Saffron</p>
+          <p class="perfume-desc">An intoxicating olfactory journey woven from midnight damask roses, smoky Cambodian agarwood, and golden crimson spice.</p>
+          <div class="card-footer">
+            <span class="price">$320</span>
+            <button class="btn-gold">Discover Scents</button>
+          </div>
+        </div>
+
+        <!-- Perfume Item 2 -->
+        <div class="perfume-card">
+          <span class="card-badge">Private Reserve</span>
+          <h3 class="perfume-title">Ambre Impérial</h3>
+          <p class="perfume-notes">Sun-drenched Amber &bull; Bourbon Vanilla &bull; Tonka</p>
+          <p class="perfume-desc">Sensual warmth wrapped in decadent golden amber resins, toasted tonka beans, and refined vintage bourbon vanilla extract.</p>
+          <div class="card-footer">
+            <span class="price">$385</span>
+            <button class="btn-gold">Discover Scents</button>
+          </div>
+        </div>
+
+        <!-- Perfume Item 3 -->
+        <div class="perfume-card">
+          <span class="card-badge">Limited Batch</span>
+          <h3 class="perfume-title">Santal Doré</h3>
+          <p class="perfume-notes">Mysore Sandalwood &bull; Cardamom &bull; Iris Butter</p>
+          <p class="perfume-desc">Creamy, noble Indian sandalwood enriched with green cardamom seeds and powdery Florentine orris butter for sheer elegance.</p>
+          <div class="card-footer">
+            <span class="price">$410</span>
+            <button class="btn-gold">Discover Scents</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: HOW TO EMBED IN HTML -->
+    <section>
+      <div class="section-title">
+        HTML Header Snippet
+        <span>Copy & paste into &lt;head&gt;</span>
+      </div>
+
+      <pre class="code-box"><code>&lt;!-- VD Haute Parfumerie Favicon Assets --&gt;
+&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"&gt;
+
+&lt;!-- Token Stylesheet --&gt;
+&lt;link rel="stylesheet" href="tokens.css"&gt;</code></pre>
+    </section>
+  </div>
+
+</body>
+</html>

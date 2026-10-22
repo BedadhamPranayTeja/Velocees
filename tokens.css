@@ -1,0 +1,72 @@
+/* ==========================================================================
+   VD / VELOCEES HAUTE PARFUMERIE - DESIGN SYSTEM & THEME TOKENS
+   Extracted from the Master Monogram (fav.jpg)
+   ========================================================================== */
+
+:root {
+  /* --- Brand Core Colors: Bordeaux Velvet & Crimson Noir --- */
+  --color-bordeaux-950: #100204; /* Deepest Midnight Wine / Obsidian Velvet */
+  --color-bordeaux-900: #180205; /* Base App Background */
+  --color-bordeaux-850: #220307; /* Dark Container / Surface */
+  --color-bordeaux-800: #2b040a; /* Exact Master Background Tone */
+  --color-bordeaux-700: #3a060f; /* Elevated Surface / Hover Card */
+  --color-bordeaux-600: #4e0915; /* Interactive State / Glow Focus */
+  --color-bordeaux-500: #6b0f1e; /* Vibrant Burgundy Accent */
+
+  /* --- Brand Accent Colors: Imperial & Champagne Gold --- */
+  --color-gold-100: #fbf3dc;    /* Alabaster Gold Tint */
+  --color-gold-200: #f6e3ba;    /* Pale Champagne Shimmer */
+  --color-gold-300: #f3ce90;    /* Master Gold Highlight */
+  --color-gold-400: #eeca8e;    /* Master VD Monogram Primary Gold */
+  --color-gold-500: #dbaa66;    /* Warm Burnished Gold */
+  --color-gold-600: #c59b58;    /* Antique Metallic Gold */
+  --color-gold-700: #9e7436;    /* Deep Bronze Gold */
+  --color-gold-800: #6e4e1f;    /* Dark Burnished Brass */
+
+  /* --- Luxury Gradients --- */
+  --gradient-gold: linear-gradient(135deg, #f7dfa6 0%, #eeca8e 50%, #c59b58 100%);
+  --gradient-gold-reverse: linear-gradient(135deg, #c59b58 0%, #eeca8e 50%, #f7dfa6 100%);
+  --gradient-gold-sheen: linear-gradient(90deg, transparent, rgba(243, 206, 144, 0.4), transparent);
+  --gradient-velvet: radial-gradient(ellipse at 50% 20%, #3e0711 0%, #1c0205 60%, #100204 100%);
+  --gradient-glass: linear-gradient(145deg, rgba(58, 6, 15, 0.65) 0%, rgba(24, 2, 5, 0.85) 100%);
+  --gradient-card: linear-gradient(180deg, rgba(43, 4, 10, 0.8) 0%, rgba(20, 2, 4, 0.95) 100%);
+
+  /* --- Text & Contrast Hierarchy --- */
+  --color-text-pure: #ffffff;
+  --color-text-primary: #fcf8f2;     /* Warm Ivory Silk */
+  --color-text-secondary: #e2cec0;   /* Soft Cashmere Linen */
+  --color-text-muted: #a38183;       /* Rose Muted Ash */
+  --color-text-gold: #eeca8e;        /* Monogram Gold Text */
+
+  /* --- Borders & Glassmorphism --- */
+  --border-gold-subtle: rgba(238, 202, 142, 0.16);
+  --border-gold-medium: rgba(238, 202, 142, 0.35);
+  --border-gold-bright: rgba(238, 202, 142, 0.7);
+  --border-bordeaux: rgba(78, 9, 21, 0.6);
+
+  /* --- Shadows & Glow Effects --- */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.85);
+  --glow-gold-sm: 0 0 15px rgba(238, 202, 142, 0.2);
+  --glow-gold-md: 0 0 30px rgba(238, 202, 142, 0.35);
+  --glow-gold-lg: 0 0 50px rgba(238, 202, 142, 0.5);
+  --glow-wine: 0 10px 40px rgba(92, 13, 22, 0.4);
+
+  /* --- Typography --- */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif;
+  --font-sans: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: 'Pinyon Script', 'Alex Brush', cursive;
+
+  /* --- Spacing & Radii --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* --- Transitions --- */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
