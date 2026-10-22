@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Ensure localhost origin so Google OAuth works seamlessly without manual domain additions
+    if (window.location.hostname === '127.0.0.1') {
+      window.location.hostname = 'localhost';
+    }
+  </script>
+  <title>Maison Login &bull; VELOCEES DE SCENT 🖤</title>
+  <meta name="description" content="Sign in to your VELOCEES DE SCENT 🖤 client account. Access bespoke olfactory reserves, private orders, and exclusive discovery sets.">
+
+  <!-- Favicon Links -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Google Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <!-- Theme Styles -->
+  <link rel="stylesheet" href="tokens.css">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bordeaux-950);
+      background-image: var(--gradient-velvet);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      position: relative;
+    }
+
+    /* Ambient background gold glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(238, 202, 142, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .auth-card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 460px;
+      background: var(--gradient-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-gold-medium);
+      border-radius: var(--radius-md);
+      padding: 38px 32px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), var(--glow-gold-sm);
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header & Monogram */
+    .brand-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-monogram-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-gold-medium);
+      overflow: hidden;
+      margin: 0 auto 14px;
+      background: var(--color-bordeaux-900);
+      box-shadow: var(--glow-gold-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-monogram-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-tag {
+      font-family: var(--font-script);
+      font-size: 1.6rem;
+      color: var(--color-gold-300);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    /* Tabs (Sign In / Register) */
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-gold-subtle);
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 0;
+      background: transparent;
+      border: none;
+      color: var(--color-text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition-fast);
+      font-weight: 500;
+    }
+
+    .tab-btn.active {
+      color: var(--color-gold-300);
+      font-weight: 600;
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-gold);
+    }
+
+    /* Google Button */
+    .btn-google {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-gold-medium);
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: var(--radius-xs);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      margin-bottom: 22px;
+    }
+
+    .btn-google:hover {
+      background: rgba(238, 202, 142, 0.12);
+      border-color: var(--color-gold-300);
+      box-shadow: 0 0 16px rgba(238, 202, 142, 0.25);
+    }
+
+    .btn-google svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 22px;
+      color: var(--color-text-muted);
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border-gold-subtle);
+    }
+    .divider span {
+      padding: 0 12px;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-gold-200);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(16, 2, 4, 0.7);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: var(--radius-xs);
+      padding: 12px 14px;
+      color: var(--color-text-primary);
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .form-control:focus {
+      border-color: var(--color-gold-400);
+      background: rgba(24, 2, 5, 0.95);
+      box-shadow: 0 0 15px rgba(238, 202, 142, 0.25);
+    }
+
+    .form-row-sub {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -6px;
+      margin-bottom: 18px;
+    }
+
+    .forgot-link {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+    .forgot-link:hover {
+      color: var(--color-gold-300);
+      text-decoration: underline;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background: var(--gradient-gold);
+      border: none;
+      color: var(--color-bordeaux-950);
+      padding: 13px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: var(--radius-xs);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      box-shadow: 0 4px 20px rgba(238, 202, 142, 0.25);
+    }
+
+    .btn-submit:hover {
+      box-shadow: 0 0 25px rgba(238, 202, 142, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Message / Alert Box */
+    .auth-alert {
+      padding: 10px 14px;
+      border-radius: var(--radius-xs);
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+      display: none;
+      line-height: 1.4;
+    }
+
+    .auth-alert.error {
+      display: block;
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid rgba(220, 38, 38, 0.6);
+      color: #fca5a5;
+    }
+
+    .auth-alert.success {
+      display: block;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.6);
+      color: #86efac;
+    }
+
+    /* Profile Authenticated View */
+    .profile-view {
+      display: none;
+      text-align: center;
+    }
+
+    .profile-avatar {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      border: 2px solid var(--color-gold-400);
+      margin: 0 auto 14px;
+      overflow: hidden;
+      box-shadow: var(--glow-gold-md);
+      background: #000;
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .profile-email {
+      font-size: 0.8rem;
+      color: var(--color-gold-300);
+      margin-bottom: 24px;
+    }
+
+    .profile-card-details {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: left;
+      font-size: 0.8rem;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    .profile-card-details span {
+      color: var(--color-gold-200);
+      font-weight: 600;
+    }
+
+    .profile-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-store-return {
+      background: var(--gradient-gold);
+      color: var(--color-bordeaux-950);
+      text-decoration: none;
+      padding: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: var(--radius-xs);
+      display: block;
+      transition: var(--transition-fast);
+    }
+
+    .btn-store-return:hover {
+      box-shadow: var(--glow-gold-md);
+      transform: translateY(-1px);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--border-gold-subtle);
+      color: var(--color-text-secondary);
+      padding: 10px;
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: var(--radius-xs);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .btn-logout:hover {
+      border-color: #ff4767;
+      color: #ff4767;
+    }
+
+    /* Back Link */
+    .back-store-link {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+    .back-store-link:hover {
+      color: var(--color-gold-300);
+    }
+
+    @media (max-width: 480px) {
+      .auth-card {
+        padding: 28px 20px;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-card">
+    
+    <!-- Brand Lockup -->
+    <div class="brand-header">
+      <div class="brand-monogram-circle">
+        <img src="fav.jpg" alt="VD Monogram">
+      </div>
+      <span class="brand-tag">Maison de Parfums</span>
+      <h1 class="brand-title">VELOCEES DE SCENT 🖤</h1>
+      <p class="brand-sub">Client Portal &bull; VIP Authentication</p>
+    </div>
+
+    <!-- Alert Box -->
+    <div id="authAlert" class="auth-alert"></div>
+
+    <!-- 1. AUTH FORMS (Visible when logged out) -->
+    <div id="authFormsSection">
+      
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="tab-btn active" id="tabSignInBtn">Sign In</button>
+        <button class="tab-btn" id="tabSignUpBtn">Create Account</button>
+      </div>
+
+      <!-- One-Click Google Sign-In -->
+      <button class="btn-google" id="googleSignInBtn" type="button">
+        <svg viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.15C3.26 21.36 7.33 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.24C.45 8.15 0 9.99 0 12s.45 3.85 1.24 5.42l4.04-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.24 6.58l4.04 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="divider">
+        <span>Or with Email</span>
+      </div>
+
+      <!-- Sign In Form -->
+      <form id="signInForm">
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" class="form-control" placeholder="client@velocees.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="form-control" placeholder="••••••••••••" required autocomplete="current-password">
+        </div>
+
+        <div class="form-row-sub">
+          <a href="javascript:void(0)" class="forgot-link" id="forgotPassLink">Forgot your password?</a>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSignInSubmit">
+          Access Maison Account
+        </button>
+      </form>
+
+      <!-- Sign Up Form (Initially hidden) -->
+      <form id="signUpForm" style="display: none;">
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" class="form-control" placeholder="Your Name" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Email Address</label>
+          <input type="email" id="regEmail" class="form-control" placeholder="client@velocees.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Create Password</label>
+          <input type="password" id="regPassword" class="form-control" placeholder="Min. 6 characters" required autocomplete="new-password">
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSignUpSubmit">
+          Create VIP Client Account
+        </button>
+      </form>
+    </div>
+
+    <!-- 2. AUTHENTICATED PROFILE VIEW (Visible when logged in) -->
+    <div id="profileSection" class="profile-view">
+      <div class="profile-avatar">
+        <img id="profileAvatarImg" src="fav.jpg" alt="Profile Avatar">
+      </div>
+      <h2 class="profile-name" id="profileNameText">VIP Client</h2>
+      <p class="profile-email" id="profileEmailText">client@velocees.com</p>
+
+      <div class="profile-card-details">
+        <div><span>Account Tier:</span> Connoisseur VIP 🖤</div>
+        <div><span>Privileges:</span> Exclusive Early Access to LAVENTRA & UNSPOKEN</div>
+        <div><span>Complimentary:</span> Free Discovery Vial on Every Acquisition</div>
+      </div>
+
+      <div class="profile-actions">
+        <a href="index.html" class="btn-store-return">Enter Flagship Boutique &rarr;</a>
+        <button class="btn-logout" id="btnLogout">Sign Out of Maison</button>
+      </div>
+    </div>
+
+  </div>
+
+  <a href="index.html" class="back-store-link">&larr; Back to Fragrance Storefront</a>
+
+  <!-- FIREBASE AUTH MODULE SCRIPT -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { 
+      getAuth, 
+      signInWithPopup, 
+      GoogleAuthProvider, 
+      signInWithEmailAndPassword, 
+      createUserWithEmailAndPassword, 
+      signOut, 
+      onAuthStateChanged,
+      sendPasswordResetEmail,
+      updateProfile
+    } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+    // Firebase configuration from project
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCm-ZwbzaiYSDr4d-7SJ6M2246OvsXCBY",
+      authDomain: "velocees-de-scent.firebaseapp.com",
+      projectId: "velocees-de-scent",
+      storageBucket: "velocees-de-scent.firebasestorage.app",
+      messagingSenderId: "534509835222",
+      appId: "1:534509835222:web:8a8a399cb67f93f1fe4a77",
+      measurementId: "G-H71DS59MZE"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+
+    // DOM References
+    const authAlert = document.getElementById('authAlert');
+    const authFormsSection = document.getElementById('authFormsSection');
+    const profileSection = document.getElementById('profileSection');
+    const tabSignInBtn = document.getElementById('tabSignInBtn');
+    const tabSignUpBtn = document.getElementById('tabSignUpBtn');
+    const signInForm = document.getElementById('signInForm');
+    const signUpForm = document.getElementById('signUpForm');
+    const googleSignInBtn = document.getElementById('googleSignInBtn');
+    const forgotPassLink = document.getElementById('forgotPassLink');
+    const btnLogout = document.getElementById('btnLogout');
+
+    const profileAvatarImg = document.getElementById('profileAvatarImg');
+    const profileNameText = document.getElementById('profileNameText');
+    const profileEmailText = document.getElementById('profileEmailText');
+
+    function showAlert(msg, isError = true) {
+      authAlert.textContent = msg;
+      authAlert.className = 'auth-alert ' + (isError ? 'error' : 'success');
+      authAlert.style.display = 'block';
+    }
+
+    function clearAlert() {
+      authAlert.style.display = 'none';
+      authAlert.textContent = '';
+    }
+
+    // Auto-detect 127.0.0.1 vs localhost
+    if (window.location.hostname === '127.0.0.1') {
+      const hint = document.createElement('div');
+      hint.style.cssText = 'background: rgba(238, 202, 142, 0.12); border: 1px solid var(--border-gold-medium); border-radius: 4px; padding: 10px 14px; font-size: 0.78rem; margin-bottom: 16px; color: var(--color-gold-200); text-align: center; line-height: 1.5;';
+      hint.innerHTML = `💡 You are browsing via <strong>127.0.0.1</strong>.<br><a href="http://localhost:4200/firebase.html" style="color: #fff; text-decoration: underline; font-weight: 700;">Click here to switch to localhost:4200</a> so Google Sign-In works instantly!`;
+      authFormsSection.insertBefore(hint, authFormsSection.firstChild);
+    }
+
+    // Tab Switcher
+    tabSignInBtn.addEventListener('click', () => {
+      tabSignInBtn.classList.add('active');
+      tabSignUpBtn.classList.remove('active');
+      signInForm.style.display = 'block';
+      signUpForm.style.display = 'none';
+      clearAlert();
+    });
+
+    tabSignUpBtn.addEventListener('click', () => {
+      tabSignUpBtn.classList.add('active');
+      tabSignInBtn.classList.remove('active');
+      signUpForm.style.display = 'block';
+      signInForm.style.display = 'none';
+      clearAlert();
+    });
+
+    // 1. Google One-Click Sign-In
+    googleSignInBtn.addEventListener('click', async () => {
+      clearAlert();
+      googleSignInBtn.disabled = true;
+      googleSignInBtn.style.opacity = '0.7';
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        showAlert(`Welcome back, ${result.user.displayName || 'VIP Client'}!`, false);
+      } catch (err) {
+        console.error("Google Sign-In Error:", err);
+        showAlert(formatFirebaseError(err.code || err.message));
+      } finally {
+        googleSignInBtn.disabled = false;
+        googleSignInBtn.style.opacity = '1';
+      }
+    });
+
+    // 2. Email / Password Sign-In
+    signInForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearAlert();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        showAlert('Successfully authenticated!', false);
+      } catch (err) {
+        console.error("Email Login Error:", err);
+        showAlert(formatFirebaseError(err.code || err.message));
+      }
+    });
+
+    // 3. Email / Password Registration
+    signUpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearAlert();
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
+
+      if (password.length < 6) {
+        showAlert('Password must contain at least 6 characters.');
+        return;
+      }
+
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        if (name) {
+          await updateProfile(cred.user, { displayName: name });
+        }
+        showAlert(`Account created! Welcome to VELOCEES DE SCENT, ${name || 'VIP Client'}.`, false);
+      } catch (err) {
+        console.error("Registration Error:", err);
+        showAlert(formatFirebaseError(err.code || err.message));
+      }
+    });
+
+    // 4. Forgot Password Flow
+    forgotPassLink.addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      if (!email) {
+        showAlert('Please enter your email address above to receive a password reset link.');
+        return;
+      }
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showAlert(`Password reset email sent to ${email}. Please check your inbox.`, false);
+      } catch (err) {
+        showAlert(formatFirebaseError(err.code || err.message));
+      }
+    });
+
+    // 5. Logout
+    btnLogout.addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        showAlert('You have been signed out.', false);
+      } catch (err) {
+        showAlert(err.message);
+      }
+    });
+
+    // 6. Real-Time Auth State Observer
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is logged in
+        authFormsSection.style.display = 'none';
+        profileSection.style.display = 'block';
+
+        profileNameText.textContent = user.displayName || 'VIP Client';
+        profileEmailText.textContent = user.email || '';
+        if (user.photoURL) {
+          profileAvatarImg.src = user.photoURL;
+        } else {
+          profileAvatarImg.src = 'fav.jpg';
+        }
+
+        // Cache session for storefront
+        localStorage.setItem('velocees_user', JSON.stringify({
+          uid: user.uid,
+          name: user.displayName || 'VIP Client',
+          email: user.email,
+          photo: user.photoURL || 'fav.jpg'
+        }));
+      } else {
+        // User is logged out
+        authFormsSection.style.display = 'block';
+        profileSection.style.display = 'none';
+        localStorage.removeItem('velocees_user');
+      }
+    });
+
+    // Format common Firebase error codes into elegant customer messages
+    function formatFirebaseError(code) {
+      if (code.includes('auth/unauthorized-domain')) {
+        return `Domain '${window.location.hostname}' is not authorized. Simply open http://localhost:${window.location.port || '4200'}/firebase.html (pre-authorized by default) or add '${window.location.hostname}' in Firebase Console > Authentication > Settings > Authorized domains.`;
+      }
+      if (code.includes('auth/configuration-not-found') || code.includes('CONFIGURATION_NOT_FOUND')) {
+        return 'Firebase Authentication is not activated yet in your Firebase Console. Go to Firebase Console > Authentication > Click "Get started" and Enable Google & Email/Password under the Sign-in method tab.';
+      }
+      if (code.includes('auth/invalid-credential') || code.includes('auth/wrong-password')) {
+        return 'Incorrect email or password. Please verify your credentials.';
+      }
+      if (code.includes('auth/user-not-found')) {
+        return 'No account exists with this email address. Please create an account.';
+      }
+      if (code.includes('auth/email-already-in-use')) {
+        return 'An account already exists with this email address. Please sign in.';
+      }
+      if (code.includes('auth/popup-closed-by-user')) {
+        return 'Google Sign-In was closed before completing. Please try again.';
+      }
+      if (code.includes('auth/invalid-email')) {
+        return 'Please enter a valid email address.';
+      }
+      if (code.includes('auth/weak-password')) {
+        return 'Password should be at least 6 characters.';
+      }
+      return code.replace('Firebase: ', '');
+    }
+  </script>
+
+</body>
+</html>

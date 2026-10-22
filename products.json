@@ -1,0 +1,62 @@
+[
+  {
+    "id": "vd-laventra",
+    "name": "LAVENTRA",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "men",
+    "gender": "Men & Unisex",
+    "badge": "SIGNATURE NOIR",
+    "price": 899,
+    "mrp": 1499,
+    "discount": "40% OFF",
+    "rating": 4.9,
+    "reviewsCount": 1840,
+    "sizes": ["50 ML"],
+    "defaultSize": "50 ML",
+    "image": "laventra.jpg",
+    "tagline": "The Black Velvet Enigma. Bold, aristocratic, and fiercely magnetic.",
+    "description": "Draped in tactile midnight black velvet and crowned with a knurled gold cap, LAVENTRA by VELOCEES DE SCENT is an olfactory statement of commanding presence. Woven from high-altitude French lavender, smoky Haitian vetiver, crushed black pepper, and warm amber resin.",
+    "notes": {
+      "top": "French High-Altitude Lavender, Crushed Black Pepper, Italian Bergamot",
+      "heart": "Smoked Haitian Vetiver, Nutmeg, Leather Accord",
+      "base": "Precious Amber, Tonka Bean Coeur, Cedarwood"
+    },
+    "longevity": "14+ Hours (Beast Mode)",
+    "sillage": "Heavy Room-Filling Projection",
+    "occasion": "Evening Galas, High-Stakes Meetings & Nights Out",
+    "inStock": true,
+    "stockCount": 65
+  },
+  {
+    "id": "vd-unspoken",
+    "name": "UNSPOKEN",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "unisex",
+    "gender": "Unisex & Women",
+    "badge": "BORDEAUX VELVET",
+    "price": 899,
+    "mrp": 1499,
+    "discount": "40% OFF",
+    "rating": 5.0,
+    "reviewsCount": 2190,
+    "sizes": ["50 ML"],
+    "defaultSize": "50 ML",
+    "image": "unspoken.jpg",
+    "tagline": "Some things are felt, never spoken. Seductive, warm, and intoxicating.",
+    "description": "Encased in rich royal bordeaux wine velvet, UNSPOKEN by VELOCEES DE SCENT whispers secrets of forbidden romance and nocturnal passion. A hypnotic harmony of crimson damask roses, warm spiced amber, and Madagascar bourbon vanilla.",
+    "notes": {
+      "top": "Crushed Saffron, Candied Plum, Sweet Mandarin Sparkle",
+      "heart": "Crimson Damask Rose Velvet, Warm Cinnamon, Golden Incense",
+      "base": "Madagascar Bourbon Vanilla, Ambergris, Cashmere Woods"
+    },
+    "longevity": "14+ Hours (Eternal Trail)",
+    "sillage": "Intoxicating & Seductive",
+    "occasion": "Date Nights, Romantic Evenings & Special Milestones",
+    "inStock": true,
+    "stockCount": 58
+  }
+]
