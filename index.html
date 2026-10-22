@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
     }
     // Global namespace initialized immediately to prevent inline onclick race conditions
     window.velocees = window.velocees || {};
-    window.velocees.toggleSearch = function(forceState) {
+    window.velocees.toggleSearch = function (forceState) {
       const dropdown = document.getElementById('globalSearchDropdown') || document.getElementById('mobileSearchDropdown');
       const input = document.getElementById('searchInput') || document.getElementById('mobileSearchInput');
       if (!dropdown) return;
@@ -25,22 +26,26 @@
     window.velocees.toggleMobileSearch = window.velocees.toggleSearch;
   </script>
   <title>VELOCEES DE SCENT 🖤 — Haute Parfumerie & Luxury Fragrances</title>
-  <meta name="description" content="Discover VELOCEES DE SCENT 🖤. Artisanal luxury perfumes crafted with imported French oils, high oil concentrations, and 14+ hours of hypnotic sillage.">
+  <meta name="description"
+    content="Discover VELOCEES DE SCENT 🖤. Artisanal luxury perfumes crafted with imported French oils, high oil concentrations, and 14+ hours of hypnotic sillage.">
 
   <!-- Favicon Package generated from master fav.jpg -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/x-icon" href="brand/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="brand/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="brand/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="brand/apple-touch-icon.png">
 
   <!-- Google Typography: Cormorant Garamond, Montserrat, Pinyon Script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
 
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="styles.css?v=20261022_v8_subnav">
 </head>
+
 <body>
 
   <!-- ADMIN STUDIO TOP BAR (Visible only in Admin mode) -->
@@ -59,11 +64,11 @@
   <!-- SITE HEADER / NAVIGATION -->
   <header class="site-header">
     <div class="container nav-container">
-      
+
       <!-- Brand Identity -->
       <a href="#" class="brand-identity" title="VELOCEES DE SCENT 🖤">
         <div class="brand-monogram-circle">
-          <img src="fav.jpg" alt="VD Monogram">
+          <img src="brand/fav.jpg" alt="VD Monogram">
         </div>
         <div class="brand-text-lockup">
           <span class="brand-name">VELOCEES DE SCENT 🖤</span>
@@ -75,29 +80,46 @@
       <div class="header-actions">
         <!-- Desktop Search Bar -->
         <div class="search-wrapper desktop-search-only">
-          <svg class="search-icon-svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <svg class="search-icon-svg" viewBox="0 0 24 24">
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+          </svg>
           <input type="text" id="searchInput" class="search-input-box" placeholder="Search notes, oud...">
         </div>
 
         <!-- Mobile Search Toggle Button (visible only on mobile) -->
-        <button class="action-btn mobile-search-btn" id="mobileSearchToggleBtn" title="Search Scents" onclick="window.velocees.toggleMobileSearch();">
-          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <button class="action-btn mobile-search-btn" id="mobileSearchToggleBtn" title="Search Scents"
+          onclick="window.velocees.toggleMobileSearch();">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+          </svg>
         </button>
 
         <!-- Wishlist Button -->
-        <button class="action-btn" id="wishlistHeaderBtn" title="Wishlist" onclick="window.velocees.openWishlistToast();">
-          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <button class="action-btn" id="wishlistHeaderBtn" title="Wishlist"
+          onclick="window.velocees.openWishlistToast();">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
           <span class="badge-count" id="wishlistBadgeCount">0</span>
         </button>
 
         <!-- VIP Account / Firebase Login Button -->
         <a href="firebase.html" class="action-btn" id="accountHeaderBtn" title="VIP Client Login & Account">
-          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+          </svg>
         </a>
 
         <!-- Cart Bag Button -->
         <button class="action-btn" id="cartToggleBtn" title="Your Fragrance Bag">
-          <svg viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z" />
+          </svg>
           <span class="badge-count" id="cartBadgeCount">0</span>
         </button>
       </div>
@@ -107,8 +129,12 @@
     <!-- Mobile Expandable Search Bar (Slides down cleanly on mobile) -->
     <div class="mobile-search-dropdown" id="mobileSearchDropdown">
       <div class="container mobile-search-inner">
-        <svg class="search-icon-svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="Search Laventra, Unspoken, notes...">
+        <svg class="search-icon-svg" viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+        </svg>
+        <input type="text" id="mobileSearchInput" class="mobile-search-input"
+          placeholder="Search Laventra, Unspoken, notes...">
         <button class="mobile-search-close" onclick="window.velocees.toggleMobileSearch(false);">&times;</button>
       </div>
     </div>
@@ -118,13 +144,26 @@
   <nav class="category-subnav-bar" id="categorySubnav" aria-label="Collections and Categories Navigation">
     <div class="container category-subnav-inner">
       <ul class="subnav-list">
-        <li><a href="#catalog" class="subnav-link active" data-subnav="all" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('all', this); }">All Fragrances</a></li>
-        <li><a href="#catalog" class="subnav-link" data-subnav="men" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('men', this); }">For Him (Laventra)</a></li>
-        <li><a href="#catalog" class="subnav-link" data-subnav="women" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('women', this); }">For Her (Unspoken)</a></li>
-        <li><a href="#catalog" class="subnav-link" data-subnav="unisex" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('unisex', this); }">Unisex Extraits</a></li>
-        <li><a href="#catalog" class="subnav-link" data-subnav="gift-sets" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('gift-sets', this); }">Discovery Sets</a></li>
-        <li><a href="#catalog" class="subnav-link" data-subnav="bestseller" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('bestseller', this); }">🔥 Bestsellers</a></li>
-        <li><a href="tokens-preview.html" target="_blank" class="subnav-link subnav-studio-badge">✨ Design Studio</a></li>
+        <li><a href="#catalog" class="subnav-link active" data-subnav="all"
+            onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('all', this); }">All
+            Fragrances</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="men"
+            onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('men', this); }">For
+            Him</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="women"
+            onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('women', this); }">For
+            Her</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="unisex"
+            onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('unisex', this); }">Unisex
+            Extraits</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="bestseller"
+            onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('bestseller', this); }">🔥
+            Bestsellers</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="under-899"
+            onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('under-899', this); }">Special
+            ₹899</a></li>
+        <li><a href="brand/tokens-preview.html" target="_blank" class="subnav-link subnav-studio-badge">✨ Design Studio</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -144,9 +183,10 @@
                 <span class="gold-accent">THE DARK ROYALTY.</span>
               </h1>
               <p class="hero-description">
-                An intoxicating, mysterious blend of French bergamot, cracked pink peppercorn, Cambodian agarwood, and smoked Bourbon vanilla. Engineered for 16+ hours of hypnotic, commanding sillage.
+                An intoxicating, mysterious blend of French bergamot, cracked pink peppercorn, Cambodian agarwood, and
+                smoked Bourbon vanilla. Engineered for 16+ hours of hypnotic, commanding sillage.
               </p>
-              
+
               <div class="hero-scent-notes-bar">
                 <div class="scent-note-chip">
                   <span class="chip-label">Top</span>
@@ -195,7 +235,7 @@
                   <span class="badge-discount">40% OFF</span>
                   <span class="badge-mrp">MRP ₹1,499</span>
                 </div>
-                <img src="laventra.jpg" alt="VELOCEES DE SCENT LAVENTRA Extrait" class="stage-bottle-img">
+                <img src="assets/laventra.jpg" alt="VELOCEES DE SCENT LAVENTRA Extrait" class="stage-bottle-img">
                 <div class="stage-floating-card">
                   <div class="stage-card-info">
                     <h4>LAVENTRA</h4>
@@ -214,19 +254,22 @@
         <div class="carousel-slide slide-unspoken" data-slide="1">
           <div class="container hero-slide-grid">
             <div class="hero-text-col">
-              <span class="hero-tag" style="border-color: rgba(186, 24, 52, 0.4); background: rgba(186, 24, 52, 0.15); color: #f7a8b8;">
+              <span class="hero-tag"
+                style="border-color: rgba(186, 24, 52, 0.4); background: rgba(186, 24, 52, 0.15); color: #f7a8b8;">
                 🍷 Bordeaux Velvet Edition &bull; 35% Extrait
               </span>
               <h1 class="hero-title">
                 UNSPOKEN<br>
-                <span class="gold-accent" style="background: linear-gradient(135deg, #f7dfa6 0%, #e8869c 60%, #c59b58 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <span class="gold-accent"
+                  style="background: linear-gradient(135deg, #f7dfa6 0%, #e8869c 60%, #c59b58 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                   WHISPERS IN BURGUNDY.
                 </span>
               </h1>
               <p class="hero-description">
-                A magnetic, unisex aura woven from golden crushed saffron, candied plum, velvet crimson rose, and salty Madagascar ambergris. A fragrance that announces your presence without uttering a single word.
+                A magnetic, unisex aura woven from golden crushed saffron, candied plum, velvet crimson rose, and salty
+                Madagascar ambergris. A fragrance that announces your presence without uttering a single word.
               </p>
-              
+
               <div class="hero-scent-notes-bar">
                 <div class="scent-note-chip">
                   <span class="chip-label">Top</span>
@@ -275,7 +318,7 @@
                   <span class="badge-discount">41% OFF</span>
                   <span class="badge-mrp">MRP ₹1,599</span>
                 </div>
-                <img src="unspoken.jpg" alt="VELOCEES DE SCENT UNSPOKEN Extrait" class="stage-bottle-img">
+                <img src="assets/unspoken.jpg" alt="VELOCEES DE SCENT UNSPOKEN Extrait" class="stage-bottle-img">
                 <div class="stage-floating-card">
                   <div class="stage-card-info">
                     <h4>UNSPOKEN</h4>
@@ -300,9 +343,10 @@
                 <span class="gold-accent">ZERO COMPROMISE.</span>
               </h1>
               <p class="hero-description">
-                Direct from the fragrance capital of Grasse to your vanity. We strip away retail markups, excessive marketing, and diluted designer formulas to offer pure Extrait de Parfum intensity.
+                Direct from the fragrance capital of Grasse to your vanity. We strip away retail markups, excessive
+                marketing, and diluted designer formulas to offer pure Extrait de Parfum intensity.
               </p>
-              
+
               <div class="hero-specs-grid-maison">
                 <div class="maison-spec-card">
                   <div class="card-icon">🇫🇷</div>
@@ -348,15 +392,15 @@
             <div class="hero-visual-col">
               <div class="maison-twin-stage">
                 <div class="twin-seal-circle">
-                  <img src="fav.jpg" alt="VELOCEES Crest" class="twin-crest-img">
+                  <img src="brand/fav.jpg" alt="VELOCEES Crest" class="twin-crest-img">
                 </div>
                 <div class="twin-bottles-wrapper">
                   <div class="twin-bottle-item left-bottle" onclick="window.velocees.goToHeroSlide(0)">
-                    <img src="laventra.jpg" alt="LAVENTRA">
+                    <img src="assets/laventra.jpg" alt="LAVENTRA">
                     <span class="twin-pill">LAVENTRA &bull; ₹899</span>
                   </div>
                   <div class="twin-bottle-item right-bottle" onclick="window.velocees.goToHeroSlide(1)">
-                    <img src="unspoken.jpg" alt="UNSPOKEN">
+                    <img src="assets/unspoken.jpg" alt="UNSPOKEN">
                     <span class="twin-pill">UNSPOKEN &bull; ₹949</span>
                   </div>
                 </div>
@@ -369,11 +413,17 @@
     </div>
 
     <!-- CAROUSEL CONTROLS -->
-    <button class="carousel-arrow carousel-arrow-prev" id="carouselPrevBtn" aria-label="Previous Slide" onclick="window.velocees.prevHeroSlide();">
-      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    <button class="carousel-arrow carousel-arrow-prev" id="carouselPrevBtn" aria-label="Previous Slide"
+      onclick="window.velocees.prevHeroSlide();">
+      <svg viewBox="0 0 24 24">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+      </svg>
     </button>
-    <button class="carousel-arrow carousel-arrow-next" id="carouselNextBtn" aria-label="Next Slide" onclick="window.velocees.nextHeroSlide();">
-      <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    <button class="carousel-arrow carousel-arrow-next" id="carouselNextBtn" aria-label="Next Slide"
+      onclick="window.velocees.nextHeroSlide();">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+      </svg>
     </button>
 
     <!-- CAROUSEL INDICATORS -->
@@ -399,7 +449,7 @@
   <!-- CATALOG SECTION -->
   <section class="catalog-section" id="catalog">
     <div class="container">
-      
+
       <!-- Section Header -->
       <div class="section-header-row">
         <div class="section-heading-group">
@@ -417,12 +467,14 @@
         </div>
       </div>
 
-      <!-- Category Filter Pills (Bella Vita Style) -->
+      <!-- Category Filter Pills -->
       <div class="category-pills-wrap">
-        <button class="pill-btn active" data-category="all">All Fragrances (2)</button>
-        <button class="pill-btn" data-category="men">LAVENTRA (Noir)</button>
-        <button class="pill-btn" data-category="unisex">UNSPOKEN (Wine)</button>
-        <button class="pill-btn" data-category="under-899">Under ₹999</button>
+        <button class="pill-btn active" data-category="all">All Fragrances (<span id="allCount">8</span>)</button>
+        <button class="pill-btn" data-category="men">For Him</button>
+        <button class="pill-btn" data-category="women">For Her</button>
+        <button class="pill-btn" data-category="unisex">Unisex Extraits</button>
+        <button class="pill-btn" data-category="bestseller">🔥 Bestsellers</button>
+        <button class="pill-btn" data-category="under-899">Special ₹899</button>
       </div>
 
       <!-- Products Grid (Filled dynamically via app.js & JSON store) -->
@@ -436,7 +488,7 @@
   <!-- SLIDE-OUT CART DRAWER -->
   <div class="cart-drawer-overlay" id="cartDrawerOverlay">
     <div class="cart-drawer">
-      
+
       <!-- Drawer Header -->
       <div class="cart-drawer-header">
         <h3>Your Fragrance Bag 🖤</h3>
@@ -547,7 +599,8 @@
 
           <div class="form-group">
             <label for="inputImage">Image Filename / URL</label>
-            <input type="text" id="inputImage" class="form-control" placeholder="laventra.jpg, unspoken.jpg..." required>
+            <input type="text" id="inputImage" class="form-control" placeholder="laventra.jpg, unspoken.jpg..."
+              required>
           </div>
 
           <div class="form-group">
@@ -557,7 +610,8 @@
 
           <div class="form-group">
             <label for="inputDesc">Editorial Description</label>
-            <textarea id="inputDesc" class="form-control" rows="3" placeholder="Full fragrance notes, mood, and olfactory story" required></textarea>
+            <textarea id="inputDesc" class="form-control" rows="3"
+              placeholder="Full fragrance notes, mood, and olfactory story" required></textarea>
           </div>
 
           <div class="form-group">
@@ -566,11 +620,13 @@
           </div>
           <div class="form-group">
             <label for="inputHeartNotes">Heart Notes (2-6 hours)</label>
-            <input type="text" id="inputHeartNotes" class="form-control" placeholder="e.g. Damask Rose Velvet, Tuscan Leather">
+            <input type="text" id="inputHeartNotes" class="form-control"
+              placeholder="e.g. Damask Rose Velvet, Tuscan Leather">
           </div>
           <div class="form-group">
             <label for="inputBaseNotes">Base Notes (6-14+ hours)</label>
-            <input type="text" id="inputBaseNotes" class="form-control" placeholder="e.g. Cambodian Agarwood, Bourbon Vanilla">
+            <input type="text" id="inputBaseNotes" class="form-control"
+              placeholder="e.g. Cambodian Agarwood, Bourbon Vanilla">
           </div>
 
           <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
@@ -587,17 +643,23 @@
     <div class="modal-container" style="max-width: 580px;">
       <button class="modal-close-btn" id="closeCheckoutBtn">&times;</button>
       <div style="padding: 30px;">
-        <span style="font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold-300);">Fast Express Checkout</span>
+        <span
+          style="font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold-300);">Fast
+          Express Checkout</span>
         <h2 style="font-family: var(--font-serif); font-size: 2rem; color: #fff; margin: 4px 0 16px;">
           Complete Your Acquisition
         </h2>
 
-        <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 4px; border: 1px solid var(--border-gold-subtle); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div
+          style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 4px; border: 1px solid var(--border-gold-subtle); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
           <div>
-            <div style="font-size: 0.8rem; color: var(--color-text-muted);">Items: <span id="checkoutItemCount" style="color: #fff; font-weight: 600;">1</span> bottles</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">Items: <span id="checkoutItemCount"
+                style="color: #fff; font-weight: 600;">1</span> bottles</div>
             <div style="font-size: 0.75rem; color: #4ade80;">Includes Free Luxury Discovery Vial</div>
           </div>
-          <div style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-gold-300); font-weight: 700;" id="checkoutSummaryTotal">
+          <div
+            style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-gold-300); font-weight: 700;"
+            id="checkoutSummaryTotal">
             ₹899
           </div>
         </div>
@@ -605,12 +667,14 @@
         <form id="checkoutForm">
           <div class="form-group">
             <label for="custName">Full Name</label>
-            <input type="text" id="custName" class="form-control" placeholder="Lord / Lady / Customer Name" required value="Pranay Teja">
+            <input type="text" id="custName" class="form-control" placeholder="Lord / Lady / Customer Name" required
+              value="Pranay Teja">
           </div>
           <div class="form-grid-2">
             <div class="form-group">
               <label for="custPhone">Phone Number</label>
-              <input type="tel" id="custPhone" class="form-control" placeholder="+91 98765 43210" required value="+91 98765 43210">
+              <input type="tel" id="custPhone" class="form-control" placeholder="+91 98765 43210" required
+                value="+91 98765 43210">
             </div>
             <div class="form-group">
               <label for="custPin">Pincode</label>
@@ -619,16 +683,19 @@
           </div>
           <div class="form-group">
             <label for="custAddress">Delivery Address</label>
-            <input type="text" id="custAddress" class="form-control" placeholder="Apartment, Street, Locality, City" required value="Velocees Penthouse, High Street Road">
+            <input type="text" id="custAddress" class="form-control" placeholder="Apartment, Street, Locality, City"
+              required value="Velocees Penthouse, High Street Road">
           </div>
 
           <div class="form-group">
             <label>Payment Method</label>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--color-text-secondary); background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 4px; border: 1px solid var(--border-gold-subtle); cursor: pointer;">
+              <label
+                style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--color-text-secondary); background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 4px; border: 1px solid var(--border-gold-subtle); cursor: pointer;">
                 <input type="radio" name="paymethod" checked> Instant UPI / QR
               </label>
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--color-text-secondary); background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 4px; border: 1px solid var(--border-gold-subtle); cursor: pointer;">
+              <label
+                style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--color-text-secondary); background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 4px; border: 1px solid var(--border-gold-subtle); cursor: pointer;">
                 <input type="radio" name="paymethod"> Cash on Delivery
               </label>
             </div>
@@ -643,7 +710,8 @@
   </div>
 
   <!-- FLOATING ADMIN / USER MODE TOGGLE BUTTON -->
-  <div class="floating-mode-switch" id="floatingModeSwitch" title="Click to toggle between Customer Storefront and Admin Studio Mode">
+  <div class="floating-mode-switch" id="floatingModeSwitch"
+    title="Click to toggle between Customer Storefront and Admin Studio Mode">
     <div class="mode-pill-status"></div>
     <div class="mode-text-group">
       <span class="mode-text-title">Active Mode</span>
@@ -657,13 +725,14 @@
   <!-- FOOTER (BELLA VITA INSPIRATION REIMAGINED FOR VELOCEES DE SCENT 🖤) -->
   <footer class="site-footer">
     <div class="container">
-      
+
       <!-- EXCLUSIVE NEWSLETTER & VIP ATELIER SIGNUP -->
       <div class="footer-newsletter-wrap">
         <div class="newsletter-text-col">
           <h3>EXCLUSIVE ATELIER PRIVILEGES 🖤</h3>
           <p>
-            Sign up here to get the latest private reserve allocations, VIP scent vault news, and secret discount codes delivered directly to your inbox. 
+            Sign up here to get the latest private reserve allocations, VIP scent vault news, and secret discount codes
+            delivered directly to your inbox.
             Plus, receive an instant <strong>15% OFF</strong> voucher on your first order.
           </p>
           <div class="footer-social-row">
@@ -680,7 +749,8 @@
 
         <div class="newsletter-form-col">
           <form onsubmit="event.preventDefault(); window.velocees.subscribeNewsletter(event);">
-            <input type="email" id="newsletterEmailInput" class="newsletter-input" placeholder="Enter your VIP email address..." required>
+            <input type="email" id="newsletterEmailInput" class="newsletter-input"
+              placeholder="Enter your VIP email address..." required>
             <button type="submit" class="newsletter-btn">Subscribe 🖤</button>
           </form>
           <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 10px;">
@@ -691,18 +761,21 @@
 
       <!-- MAIN 5-COLUMN FOOTER NAVIGATION -->
       <div class="footer-grid-bella">
-        
+
         <!-- COL 1: BESTSELLERS -->
         <div class="footer-col-bella">
           <h4>Bestsellers</h4>
           <ul class="footer-links-bella">
             <li><a href="#catalog" onclick="window.velocees.filterByNav('all');">LAVENTRA Extrait (50 ML Noir)</a></li>
             <li><a href="#catalog" onclick="window.velocees.filterByNav('all');">UNSPOKEN Extrait (50 ML Wine)</a></li>
-            <li><a href="#catalog" onclick="window.velocees.filterByNav('gift-sets');">Private Discovery Set (4x20 ML)</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('gift-sets');">Private Discovery Set (4x20
+                ML)</a></li>
             <li><a href="#catalog" onclick="window.velocees.filterByNav('men');">Extrait For Him (16h Sillage)</a></li>
-            <li><a href="#catalog" onclick="window.velocees.filterByNav('women');">Extrait For Her (Velvet Floral)</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('women');">Extrait For Her (Velvet Floral)</a>
+            </li>
             <li><a href="#catalog" onclick="window.velocees.filterByNav('unisex');">Unisex Seductive Parfums</a></li>
-            <li><a href="#catalog" onclick="window.velocees.searchFromFooter('oud');">Cambodian Aged Oud Collection</a></li>
+            <li><a href="#catalog" onclick="window.velocees.searchFromFooter('oud');">Cambodian Aged Oud Collection</a>
+            </li>
           </ul>
         </div>
 
@@ -710,13 +783,20 @@
         <div class="footer-col-bella">
           <h4>Information</h4>
           <ul class="footer-links-bella">
-            <li><a href="#catalog" onclick="window.velocees.searchFromFooter('pyramid');">Olfactory Notes & Pyramids</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('newsroom')">Maison Newsroom & Media</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('terms')">Terms & Conditions</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('privacy')">Client Privacy Policy</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('return')">7-Day Return & Fragrance Guarantee</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('shipping')">Express Delivery Policy</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('bulk')">Corporate Gifting & GST Invoices</a></li>
+            <li><a href="#catalog" onclick="window.velocees.searchFromFooter('pyramid');">Olfactory Notes & Pyramids</a>
+            </li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('newsroom')">Maison Newsroom &
+                Media</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('terms')">Terms & Conditions</a>
+            </li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('privacy')">Client Privacy
+                Policy</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('return')">7-Day Return &
+                Fragrance Guarantee</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('shipping')">Express Delivery
+                Policy</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('bulk')">Corporate Gifting & GST
+                Invoices</a></li>
           </ul>
         </div>
 
@@ -725,12 +805,16 @@
           <h4>Support</h4>
           <ul class="footer-links-bella">
             <li><a href="javascript:void(0)" onclick="window.velocees.goToHeroSlide(2);">The Maison Philosophy</a></li>
-            <li><a href="https://api.whatsapp.com/send/?phone=919810154380&text=Hello+Velocees+De+Scent+Concierge" target="_blank">Contact Atelier Concierge</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('tracking')">Live Dispatch Tracking</a></li>
+            <li><a href="https://api.whatsapp.com/send/?phone=919810154380&text=Hello+Velocees+De+Scent+Concierge"
+                target="_blank">Contact Atelier Concierge</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('tracking')">Live Dispatch
+                Tracking</a></li>
             <li><a href="#catalog" onclick="window.velocees.filterByNav('all');">Complete Scent Archive</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('faq')">Frequently Asked Questions</a></li>
-            <li><a href="tokens-preview.html" target="_blank">Design System Tokens</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('investor')">Investor Relations</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('faq')">Frequently Asked
+                Questions</a></li>
+            <li><a href="brand/tokens-preview.html" target="_blank">Design System Tokens</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('investor')">Investor
+                Relations</a></li>
           </ul>
         </div>
 
@@ -742,7 +826,8 @@
             One International Centre, 24th Floor, Senapati Bapat Marg, High Street Road, Mumbai, Maharashtra 400013
           </p>
           <div class="footer-contact-meta">
-            <a href="https://api.whatsapp.com/send/?phone=919810154380&text=Hello+Velocees+De+Scent+Concierge" target="_blank" class="footer-whatsapp-btn">
+            <a href="https://api.whatsapp.com/send/?phone=919810154380&text=Hello+Velocees+De+Scent+Concierge"
+              target="_blank" class="footer-whatsapp-btn">
               💬 WhatsApp Concierge
             </a>
             <div class="footer-contact-item">
@@ -763,8 +848,10 @@
           <ul class="footer-links-bella">
             <li><a href="firebase.html">👑 VIP Client Login</a></li>
             <li><a href="javascript:void(0)" onclick="window.velocees.toggleAdminMode();">⚡ Toggle Admin Mode</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.exportProductsJSON();">📥 Export products.json</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.resetToSeedJSON();">🔄 Restore Seed Catalog</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.exportProductsJSON();">📥 Export products.json</a>
+            </li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.resetToSeedJSON();">🔄 Restore Seed Catalog</a>
+            </li>
             <li><a href="javascript:void(0)" onclick="window.velocees.openCart();">🛍️ View Fragrance Bag</a></li>
             <li><a href="#catalog">✨ Free Discovery Vial (&gt; ₹999)</a></li>
           </ul>
@@ -778,10 +865,14 @@
           <span style="font-size: 1.1rem;">🛡️</span> CLIENT SECURITY & AUTHENTICITY ADVISORY
         </h5>
         <p>
-          We have noticed a rise in fraudulent calls, SMS, WhatsApp messages, and fake websites offering counterfeit fragrances. 
-          Please be aware that <strong>VELOCEES DE SCENT 🖤</strong> and its maison representatives never ask for your private banking OTPs, 
-          passwords, or direct UPI payments outside our official encrypted checkout. If you receive any suspicious communication, stay cautious 
-          and reach out immediately to our official concierge hotline <strong>+91 98101 54380</strong> or email <strong>concierge@velocees.com</strong>.
+          We have noticed a rise in fraudulent calls, SMS, WhatsApp messages, and fake websites offering counterfeit
+          fragrances.
+          Please be aware that <strong>VELOCEES DE SCENT 🖤</strong> and its maison representatives never ask for your
+          private banking OTPs,
+          passwords, or direct UPI payments outside our official encrypted checkout. If you receive any suspicious
+          communication, stay cautious
+          and reach out immediately to our official concierge hotline <strong>+91 98101 54380</strong> or email
+          <strong>concierge@velocees.com</strong>.
         </p>
       </div>
 
@@ -794,22 +885,31 @@
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('unspoken');">Unspoken Extrait</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('men');">Best perfume for men</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('women');">Best perfume for women</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('long lasting');">14h beast longevity</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('long lasting');">14h beast
+            longevity</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('oud');">Cambodian Oud perfume</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('velvet');">Bordeaux velvet perfume</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('extrait');">35% Extrait de parfum</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('vanilla');">Madagascar bourbon vanilla</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('saffron');">Golden saffron & plum</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('velvet');">Bordeaux velvet
+            perfume</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('extrait');">35% Extrait de
+            parfum</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('vanilla');">Madagascar bourbon
+            vanilla</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('saffron');">Golden saffron &
+            plum</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('rose');">Crimson rose velvet</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('bergamot');">French bergamot</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('amber');">Ambergris & tonka</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('gift');">Perfume gift sets</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('couples');">Wedding gifts for couples</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('couples');">Wedding gifts for
+            couples</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('men');">Gifts for men under 1000</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('women');">Gifts for women under 1000</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('unisex');">Intoxicating date night scent</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('women');">Gifts for women under
+            1000</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('unisex');">Intoxicating date night
+            scent</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('discovery');">Discovery box</a>
-          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('corporate');">Corporate luxury gifting</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('corporate');">Corporate luxury
+            gifting</a>
           <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('grasse');">Imported Grasse oils</a>
         </div>
       </div>
@@ -817,7 +917,9 @@
       <!-- PAYMENT METHODS & TRUST STRIP -->
       <div class="footer-payment-strip">
         <div class="payment-methods-list">
-          <span style="font-size: 0.72rem; color: var(--color-gold-400); font-weight: 700; margin-right: 6px; letter-spacing: 1px;">PAYMENT METHODS:</span>
+          <span
+            style="font-size: 0.72rem; color: var(--color-gold-400); font-weight: 700; margin-right: 6px; letter-spacing: 1px;">PAYMENT
+            METHODS:</span>
           <span class="payment-pill">Instant UPI</span>
           <span class="payment-pill">GPay</span>
           <span class="payment-pill">PhonePe</span>
@@ -838,7 +940,8 @@
 
       <!-- COPYRIGHT -->
       <div class="footer-bottom">
-        &copy; 2026 VELOCEES DE SCENT 🖤 (VD Haute Parfumerie Atelier). All Rights Reserved. Inspired by Bella Vita Organic. Built with Vanilla CSS & Pure JSON Store.
+        &copy; 2026 VELOCEES DE SCENT 🖤 (VD Haute Parfumerie Atelier). All Rights Reserved. Inspired by Bella Vita
+        Organic. Built with Vanilla CSS & Pure JSON Store.
       </div>
 
     </div>
@@ -847,24 +950,37 @@
   <!-- MOBILE BOTTOM NAVIGATION (Native App Feel on Touchscreens) -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
     <a href="#catalog" class="mob-nav-item active" onclick="window.velocees.filterByNav('all')">
-      <svg viewBox="0 0 24 24"><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+      <svg viewBox="0 0 24 24">
+        <path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
+      </svg>
       <span>Catalog</span>
     </a>
     <a href="#catalog" class="mob-nav-item" onclick="window.velocees.filterByNav('men')">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm0-4h-2V7h2v7z"/></svg>
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm0-4h-2V7h2v7z" />
+      </svg>
       <span>Laventra</span>
     </a>
     <a href="#catalog" class="mob-nav-item" onclick="window.velocees.filterByNav('unisex')">
-      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+      </svg>
       <span>Unspoken</span>
     </a>
     <button class="mob-nav-item" onclick="window.velocees.openCart()" style="position: relative;">
-      <svg viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/></svg>
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z" />
+      </svg>
       <span>Bag</span>
       <span class="badge-count" id="mobCartBadge" style="position: absolute; top: 0; right: 8px;">0</span>
     </button>
     <button class="mob-nav-item" onclick="window.velocees.toggleAdminMode()">
-      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+      </svg>
       <span>Studio</span>
     </button>
   </nav>
@@ -872,20 +988,25 @@
   <!-- Helper for navigation filters -->
   <script>
     window.velocees = window.velocees || {};
-    window.velocees.filterByNav = function(cat) {
-      const pill = document.querySelector(`.pill-btn[data-category="${cat}"]`);
-      if (pill) pill.click();
-    };
-    window.velocees.openWishlistToast = function() {
-      const count = document.getElementById('wishlistBadgeCount').textContent;
+    if (!window.velocees.filterByNav) {
+      window.velocees.filterByNav = function (cat) {
+        const pill = document.querySelector(`.pill-btn[data-category="${cat}"]`);
+        if (pill) pill.click();
+      };
+    }
+    window.velocees.openWishlistToast = function () {
+      const count = document.getElementById('wishlistBadgeCount') ? document.getElementById('wishlistBadgeCount').textContent : '0';
       const toast = document.getElementById('toastMsg');
-      toast.textContent = `You have ${count} fragrances in your Wishlist ❤️`;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
+      if (toast) {
+        toast.textContent = `You have ${count} fragrances in your Wishlist ❤️`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+      }
     };
   </script>
 
   <!-- Core App Logic -->
-  <script src="app.js?v=20261022_v6_footer"></script>
+  <script src="app.js?v=20261022_v10_8purevelvets"></script>
 </body>
+
 </html>

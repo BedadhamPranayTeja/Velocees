@@ -13,9 +13,11 @@
     "discount": "40% OFF",
     "rating": 4.9,
     "reviewsCount": 1840,
-    "sizes": ["50 ML"],
+    "sizes": [
+      "50 ML"
+    ],
     "defaultSize": "50 ML",
-    "image": "laventra.jpg",
+    "image": "assets/laventra.jpg",
     "tagline": "The Black Velvet Enigma. Bold, aristocratic, and fiercely magnetic.",
     "description": "Draped in tactile midnight black velvet and crowned with a knurled gold cap, LAVENTRA by VELOCEES DE SCENT is an olfactory statement of commanding presence. Woven from high-altitude French lavender, smoky Haitian vetiver, crushed black pepper, and warm amber resin.",
     "notes": {
@@ -35,17 +37,19 @@
     "brand": "VELOCEES DE SCENT 🖤",
     "type": "Extrait De Parfum",
     "concentration": "35% French Fragrance Oil",
-    "category": "unisex",
-    "gender": "Unisex & Women",
+    "category": "women",
+    "gender": "Women & Unisex",
     "badge": "BORDEAUX VELVET",
     "price": 899,
     "mrp": 1499,
     "discount": "40% OFF",
-    "rating": 5.0,
+    "rating": 5,
     "reviewsCount": 2190,
-    "sizes": ["50 ML"],
+    "sizes": [
+      "50 ML"
+    ],
     "defaultSize": "50 ML",
-    "image": "unspoken.jpg",
+    "image": "assets/unspoken.jpg",
     "tagline": "Some things are felt, never spoken. Seductive, warm, and intoxicating.",
     "description": "Encased in rich royal bordeaux wine velvet, UNSPOKEN by VELOCEES DE SCENT whispers secrets of forbidden romance and nocturnal passion. A hypnotic harmony of crimson damask roses, warm spiced amber, and Madagascar bourbon vanilla.",
     "notes": {
@@ -58,5 +62,197 @@
     "occasion": "Date Nights, Romantic Evenings & Special Milestones",
     "inStock": true,
     "stockCount": 58
+  },
+  {
+    "id": "vd-oud-royale",
+    "name": "OUD ROYALE",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "men",
+    "gender": "Men & Unisex",
+    "badge": "EMERALD MAJESTY",
+    "price": 999,
+    "mrp": 1699,
+    "discount": "41% OFF",
+    "rating": 4.9,
+    "reviewsCount": 1620,
+    "sizes": [
+      "50 ML"
+    ],
+    "defaultSize": "50 ML",
+    "image": "assets/oud-royale.jpg",
+    "tagline": "The Sovereign Scent of Kings. Smoky Cambodian Oud meets Golden Frankincense.",
+    "description": "Cloaked in deep regal emerald green velvet, OUD ROYALE is an imperial fragrance crafted for individuals of sovereign power. Distilled from rare aged Cambodian agarwood, charred guaiacwood, royal frankincense, and liquid golden amber.",
+    "notes": {
+      "top": "Green Cardamom Pods, Pink Peppercorn, Wild Thyme",
+      "heart": "Smoked Cambodian Oud, Charred Guaiacwood, Golden Frankincense",
+      "base": "Royal Ambergris, Dark Birch Tar, Atlas Mountain Cedar"
+    },
+    "longevity": "16+ Hours (Eternal Sillage)",
+    "sillage": "Majestic Room-Commanding Presence",
+    "occasion": "Royalty Galas, Red Carpets & Private Celebrations",
+    "inStock": true,
+    "stockCount": 42
+  },
+  {
+    "id": "vd-azur-imperial",
+    "name": "AZUR IMPERIAL",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "men",
+    "gender": "Men & Unisex",
+    "badge": "MIDNIGHT AZUR",
+    "price": 899,
+    "mrp": 1499,
+    "discount": "40% OFF",
+    "rating": 4.8,
+    "reviewsCount": 1450,
+    "sizes": [
+      "50 ML"
+    ],
+    "defaultSize": "50 ML",
+    "image": "assets/azur-imperial.jpg",
+    "tagline": "Deep Oceanic Radiance. Crisp Mediterranean Sea Salt, Frosted Mint & Blue Sage.",
+    "description": "Draped in midnight royal navy blue velvet, AZUR IMPERIAL captures the untamed majesty of Mediterranean night waters. An invigorating blast of sparkling Sicilian bergamot and wild sea salt softens into frosted mint and solar woods.",
+    "notes": {
+      "top": "Sunlit Sicilian Bergamot, Crushed Frosted Mint, Sea Breeze Accord",
+      "heart": "Blue Coastal Sage, Geranium Bourbon, Violet Leaves",
+      "base": "French Oakmoss, Sheer Ambroxan, Sun-Bleached Cedar"
+    },
+    "longevity": "12+ Hours (All-Day Freshness)",
+    "sillage": "Crisp Magnetic Trail",
+    "occasion": "Daily Luxury, Yachting, Boardroom Meetings & Summer Evenings",
+    "inStock": true,
+    "stockCount": 78
+  },
+  {
+    "id": "vd-rose-velours",
+    "name": "ROSE VELOURS",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "women",
+    "gender": "Women & Unisex",
+    "badge": "PARISIAN BLUSH",
+    "price": 899,
+    "mrp": 1499,
+    "discount": "40% OFF",
+    "rating": 4.9,
+    "reviewsCount": 1980,
+    "sizes": [
+      "50 ML"
+    ],
+    "defaultSize": "50 ML",
+    "image": "assets/rose-velours.jpg",
+    "tagline": "Velvet Petals at Twilight. Turkish Rose Absolu steeped in Spiced Praline.",
+    "description": "Enveloped in delicate dusty rose blush velvet, ROSE VELOURS is a poetic ode to Parisian romance. Unfolding with dewy May rosebuds and sweet lychee, it melts into decadent caramel praline and powdered cashmere musk.",
+    "notes": {
+      "top": "Dewy Grasse Rosebuds, Spiced Lychee Nectar, Italian Mandarin",
+      "heart": "Turkish Rose Absolu, Caramelized Praline Coeur, Peony",
+      "base": "Warm White Musk, Cashmere Woods, Golden Benzoin"
+    },
+    "longevity": "14+ Hours (Romantic Aura)",
+    "sillage": "Graceful Whispering Radiance",
+    "occasion": "Spring Brunches, Romantic Strolls & Candlelit Dinners",
+    "inStock": true,
+    "stockCount": 54
+  },
+  {
+    "id": "vd-ambre-dor",
+    "name": "AMBRE D'OR",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "unisex",
+    "gender": "Unisex",
+    "badge": "LIQUID GOLD",
+    "price": 949,
+    "mrp": 1599,
+    "discount": "40% OFF",
+    "rating": 5,
+    "reviewsCount": 1730,
+    "sizes": [
+      "50 ML"
+    ],
+    "defaultSize": "50 ML",
+    "image": "assets/ambre-dor.jpg",
+    "tagline": "Sun-drenched Golden Warmth. Resinous Baltic Amber, Honeycomb & Smoked Tonka.",
+    "description": "Swathed in rich cognac caramel velvet, AMBRE D'OR glows with molten golden decadence. An intoxicating blend of sweet wildflower honey, ancient Baltic amber resin, toasted almond tonka, and creamy vanilla bourbon.",
+    "notes": {
+      "top": "Wild Mountain Honey, Cinnamon Bark, Bitter Orange Zest",
+      "heart": "Resinous Baltic Amber, Toasted Tonka Bean, Labdanum",
+      "base": "Bourbon Vanilla, Cashmeran, Smoked Benzoin Tears"
+    },
+    "longevity": "15+ Hours (Hypnotic Sillage)",
+    "sillage": "Warm Enveloping Cloud",
+    "occasion": "Autumn Evenings, Fireside Conversations & Luxury Soirées",
+    "inStock": true,
+    "stockCount": 49
+  },
+  {
+    "id": "vd-iris-noir",
+    "name": "IRIS NOIR",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "women",
+    "gender": "Women & Unisex",
+    "badge": "ROYAL AMETHYST",
+    "price": 949,
+    "mrp": 1599,
+    "discount": "40% OFF",
+    "rating": 4.9,
+    "reviewsCount": 1390,
+    "sizes": [
+      "50 ML"
+    ],
+    "defaultSize": "50 ML",
+    "image": "assets/iris-noir.jpg",
+    "tagline": "The Velvet Royalty of Florence. Powdery Tuscan Orris, Black Violet & Suede.",
+    "description": "Draped in imperial royal amethyst purple velvet, IRIS NOIR is an aristocratic perfume of unmatched refinement. Built around prized Florentine orris butter aged for three years, framed by midnight violet petals and supple leather.",
+    "notes": {
+      "top": "Midnight Violet Petals, Candied Blackcurrant, Pink Pepper",
+      "heart": "Florentine Orris Butter, Heliotrope, Black Leather",
+      "base": "Indonesian Patchouli, Sheer White Suede, Madagascar Vanilla"
+    },
+    "longevity": "14+ Hours (Noble Trail)",
+    "sillage": "Sublime Powdery Elegance",
+    "occasion": "Opera Nights, Art Exhibitions & Couture Evenings",
+    "inStock": true,
+    "stockCount": 38
+  },
+  {
+    "id": "vd-santal-blanc",
+    "name": "SANTAL BLANC",
+    "brand": "VELOCEES DE SCENT 🖤",
+    "type": "Extrait De Parfum",
+    "concentration": "35% French Fragrance Oil",
+    "category": "unisex",
+    "gender": "Unisex",
+    "badge": "WHITE SILK",
+    "price": 999,
+    "mrp": 1699,
+    "discount": "41% OFF",
+    "rating": 4.9,
+    "reviewsCount": 1510,
+    "sizes": [
+      "50 ML"
+    ],
+    "defaultSize": "50 ML",
+    "image": "assets/santal-blanc.jpg",
+    "tagline": "Pure Sacred Serenity. Creamy Mysore Sandalwood enveloped in White Coconut & Musk.",
+    "description": "Encased in pure ivory silk cream velvet, SANTAL BLANC evokes meditative peace and clean luxury. Creamy Indian sandalwood is whipped with white cardamom, silky coconut milk, green violet leaf, and luminous cedar.",
+    "notes": {
+      "top": "White Cardamom, Silky Coconut Water, Crushed Fig Leaves",
+      "heart": "Creamy Mysore Sandalwood Coeur, Iris Root, Violet Leaf",
+      "base": "Clean Sheer Musk, Iso E Super, Virginian Cedarwood"
+    },
+    "longevity": "14+ Hours (Clean Luxury)",
+    "sillage": "Intimate Skin-Scent Radiance",
+    "occasion": "Morning Meditations, High-End Casual Wear & Daily Elegance",
+    "inStock": true,
+    "stockCount": 60
   }
 ]
