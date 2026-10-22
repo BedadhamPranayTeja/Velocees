@@ -7,6 +7,22 @@
     if (window.location.hostname === '127.0.0.1') {
       window.location.hostname = 'localhost';
     }
+    // Global namespace initialized immediately to prevent inline onclick race conditions
+    window.velocees = window.velocees || {};
+    window.velocees.toggleSearch = function(forceState) {
+      const dropdown = document.getElementById('globalSearchDropdown') || document.getElementById('mobileSearchDropdown');
+      const input = document.getElementById('searchInput') || document.getElementById('mobileSearchInput');
+      if (!dropdown) return;
+      if (typeof forceState === 'boolean') {
+        dropdown.classList.toggle('open', forceState);
+      } else {
+        dropdown.classList.toggle('open');
+      }
+      if (dropdown.classList.contains('open') && input) {
+        setTimeout(() => input.focus(), 60);
+      }
+    };
+    window.velocees.toggleMobileSearch = window.velocees.toggleSearch;
   </script>
   <title>VELOCEES DE SCENT 🖤 — Haute Parfumerie & Luxury Fragrances</title>
   <meta name="description" content="Discover VELOCEES DE SCENT 🖤. Artisanal luxury perfumes crafted with imported French oils, high oil concentrations, and 14+ hours of hypnotic sillage.">
@@ -23,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
 
   <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261022_v8_subnav">
 </head>
 <body>
 
@@ -54,17 +70,6 @@
           <span class="brand-tagline-mini">Haute Parfumerie &bull; Maison de Luxe</span>
         </div>
       </a>
-
-      <!-- Desktop Nav Links -->
-      <nav>
-        <ul class="main-nav">
-          <li><a href="#catalog" class="nav-link active" data-category="all">Catalog</a></li>
-          <li><a href="#catalog" class="nav-link" onclick="window.velocees.filterByNav('men')">For Him</a></li>
-          <li><a href="#catalog" class="nav-link" onclick="window.velocees.filterByNav('women')">For Her</a></li>
-          <li><a href="#catalog" class="nav-link" onclick="window.velocees.filterByNav('unisex')">Unisex</a></li>
-          <li><a href="#catalog" class="nav-link" onclick="window.velocees.filterByNav('gift-sets')">Discovery Sets</a></li>
-        </ul>
-      </nav>
 
       <!-- Search, Wishlist, Account, Bag -->
       <div class="header-actions">
@@ -109,70 +114,285 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-section">
-    <div class="container hero-grid">
-      
-      <div class="hero-text-col">
-        <span class="hero-tag">✨ Private Reserve Collection</span>
-        <h1 class="hero-title">
-          BOTTLED INTENSITY.<br>
-          <span class="gold-accent">HAUTE PARFUMERIE</span><br>
-          FOR THE UNAPOLOGETIC.
-        </h1>
-        <p class="hero-description">
-          Engineered for hypnotic sillage and 14+ hours of beast longevity. Formulated with rare Grasse absolutes, aged Cambodian agarwood, and opulent damask roses. Pocket-friendly luxury reimagined for high impact.
-        </p>
+  <!-- CATEGORY NAVIGATION BAR (BELOW HEADER) -->
+  <nav class="category-subnav-bar" id="categorySubnav" aria-label="Collections and Categories Navigation">
+    <div class="container category-subnav-inner">
+      <ul class="subnav-list">
+        <li><a href="#catalog" class="subnav-link active" data-subnav="all" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('all', this); }">All Fragrances</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="men" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('men', this); }">For Him (Laventra)</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="women" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('women', this); }">For Her (Unspoken)</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="unisex" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('unisex', this); }">Unisex Extraits</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="gift-sets" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('gift-sets', this); }">Discovery Sets</a></li>
+        <li><a href="#catalog" class="subnav-link" data-subnav="bestseller" onclick="if(window.velocees && window.velocees.filterByNav){ window.velocees.filterByNav('bestseller', this); }">🔥 Bestsellers</a></li>
+        <li><a href="tokens-preview.html" target="_blank" class="subnav-link subnav-studio-badge">✨ Design Studio</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <div class="hero-actions">
-          <a href="#catalog" class="btn-primary">
-            Explore Fragrances <span>&rarr;</span>
-          </a>
-          <button class="btn-secondary" onclick="window.velocees.openProductDetail('vd-03');">
-            View Discovery Box
-          </button>
-        </div>
+  <!-- HERO CAROUSEL SECTION -->
+  <section class="hero-carousel-section" id="heroCarousel" aria-label="Haute Parfumerie Showcase">
+    <div class="carousel-track-wrapper">
+      <div class="carousel-track" id="heroCarouselTrack">
 
-        <div class="trust-badges-bar">
-          <div class="trust-item">
-            <span class="icon">🇫🇷</span>
-            <span class="text">Imported French Oils</span>
-          </div>
-          <div class="trust-item">
-            <span class="icon">🛡️</span>
-            <span class="text">IFRA Certified</span>
-          </div>
-          <div class="trust-item">
-            <span class="icon">🐰</span>
-            <span class="text">Cruelty Free</span>
-          </div>
-          <div class="trust-item">
-            <span class="icon">⏳</span>
-            <span class="text">14h+ Beast Longevity</span>
-          </div>
-        </div>
-      </div>
+        <!-- SLIDE 1: LAVENTRA -->
+        <div class="carousel-slide slide-laventra active" data-slide="0">
+          <div class="container hero-slide-grid">
+            <div class="hero-text-col">
+              <span class="hero-tag">✨ Private Noir Reserve &bull; 35% Extrait</span>
+              <h1 class="hero-title">
+                LAVENTRA<br>
+                <span class="gold-accent">THE DARK ROYALTY.</span>
+              </h1>
+              <p class="hero-description">
+                An intoxicating, mysterious blend of French bergamot, cracked pink peppercorn, Cambodian agarwood, and smoked Bourbon vanilla. Engineered for 16+ hours of hypnotic, commanding sillage.
+              </p>
+              
+              <div class="hero-scent-notes-bar">
+                <div class="scent-note-chip">
+                  <span class="chip-label">Top</span>
+                  <span class="chip-val">Bergamot &bull; Pink Peppercorn</span>
+                </div>
+                <div class="scent-note-chip">
+                  <span class="chip-label">Heart</span>
+                  <span class="chip-val">Cambodian Oud &bull; Cedar</span>
+                </div>
+                <div class="scent-note-chip">
+                  <span class="chip-label">Base</span>
+                  <span class="chip-val">Smoked Vanilla &bull; Black Amber</span>
+                </div>
+              </div>
 
-      <!-- Hero Visual Showcase -->
-      <div class="hero-visual">
-        <div class="hero-bottle-card">
-          <div style="position: absolute; top: 16px; left: 16px; z-index: 5; display: flex; gap: 6px;">
-            <button class="pill-btn active" id="heroBtnLaventra" style="padding: 4px 12px; font-size: 0.68rem;" onclick="window.velocees.switchHero('laventra')">LAVENTRA (Noir)</button>
-            <button class="pill-btn" id="heroBtnUnspoken" style="padding: 4px 12px; font-size: 0.68rem;" onclick="window.velocees.switchHero('unspoken')">UNSPOKEN (Wine)</button>
-          </div>
-          <img src="laventra.jpg" id="heroBottleImg" alt="VELOCEES DE SCENT LAVENTRA">
-          <div class="hero-card-floating-badge">
-            <div class="badge-text-group">
-              <h4 id="heroBottleTitle">LAVENTRA</h4>
-              <p id="heroBottleSub">50 ML &bull; Black Velvet Extrait &bull; 35% Oil</p>
+              <div class="hero-actions">
+                <button class="btn-primary" onclick="window.velocees.addToCart('vd-laventra', '50 ML', true);">
+                  <span>Add to Bag &bull; ₹899</span> <span>&rarr;</span>
+                </button>
+                <button class="btn-secondary" onclick="window.velocees.openProductDetail('vd-laventra');">
+                  Explore Scent Notes
+                </button>
+              </div>
+
+              <div class="hero-specs-row">
+                <div class="spec-item">
+                  <span class="spec-icon">⏳</span>
+                  <span class="spec-text">16h+ Beast Longevity</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">🌌</span>
+                  <span class="spec-text">6ft Room-Filling Sillage</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">🖤</span>
+                  <span class="spec-text">50 ML Black Velvet Box</span>
+                </div>
+              </div>
             </div>
-            <button class="btn-card-buy" id="heroBuyBtn" onclick="window.velocees.addToCart('vd-laventra', '50 ML', true);">
-              Shop Now &bull; ₹899
-            </button>
+
+            <!-- Slide Visual -->
+            <div class="hero-visual-col">
+              <div class="hero-product-stage stage-noir">
+                <div class="stage-glow"></div>
+                <div class="stage-badge-offer">
+                  <span class="badge-discount">40% OFF</span>
+                  <span class="badge-mrp">MRP ₹1,499</span>
+                </div>
+                <img src="laventra.jpg" alt="VELOCEES DE SCENT LAVENTRA Extrait" class="stage-bottle-img">
+                <div class="stage-floating-card">
+                  <div class="stage-card-info">
+                    <h4>LAVENTRA</h4>
+                    <p>50 ML &bull; Haute Extrait &bull; 35% Oil</p>
+                  </div>
+                  <button class="stage-card-btn" onclick="window.velocees.addToCart('vd-laventra', '50 ML', true);">
+                    Shop &bull; ₹899
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
+        <!-- SLIDE 2: UNSPOKEN -->
+        <div class="carousel-slide slide-unspoken" data-slide="1">
+          <div class="container hero-slide-grid">
+            <div class="hero-text-col">
+              <span class="hero-tag" style="border-color: rgba(186, 24, 52, 0.4); background: rgba(186, 24, 52, 0.15); color: #f7a8b8;">
+                🍷 Bordeaux Velvet Edition &bull; 35% Extrait
+              </span>
+              <h1 class="hero-title">
+                UNSPOKEN<br>
+                <span class="gold-accent" style="background: linear-gradient(135deg, #f7dfa6 0%, #e8869c 60%, #c59b58 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                  WHISPERS IN BURGUNDY.
+                </span>
+              </h1>
+              <p class="hero-description">
+                A magnetic, unisex aura woven from golden crushed saffron, candied plum, velvet crimson rose, and salty Madagascar ambergris. A fragrance that announces your presence without uttering a single word.
+              </p>
+              
+              <div class="hero-scent-notes-bar">
+                <div class="scent-note-chip">
+                  <span class="chip-label">Top</span>
+                  <span class="chip-val">Golden Saffron &bull; Candied Plum</span>
+                </div>
+                <div class="scent-note-chip">
+                  <span class="chip-label">Heart</span>
+                  <span class="chip-val">Crimson Rose Velvet &bull; Cinnamon</span>
+                </div>
+                <div class="scent-note-chip">
+                  <span class="chip-label">Base</span>
+                  <span class="chip-val">Madagascar Vanilla &bull; Ambergris</span>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <button class="btn-primary" onclick="window.velocees.addToCart('vd-unspoken', '50 ML', true);">
+                  <span>Add to Bag &bull; ₹949</span> <span>&rarr;</span>
+                </button>
+                <button class="btn-secondary" onclick="window.velocees.openProductDetail('vd-unspoken');">
+                  Explore Scent Notes
+                </button>
+              </div>
+
+              <div class="hero-specs-row">
+                <div class="spec-item">
+                  <span class="spec-icon">⏳</span>
+                  <span class="spec-text">14h+ Beast Longevity</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">🌹</span>
+                  <span class="spec-text">Intimate & Seductive Sillage</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">🍷</span>
+                  <span class="spec-text">50 ML Bordeaux Velvet Box</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide Visual -->
+            <div class="hero-visual-col">
+              <div class="hero-product-stage stage-wine">
+                <div class="stage-glow wine-glow"></div>
+                <div class="stage-badge-offer">
+                  <span class="badge-discount">41% OFF</span>
+                  <span class="badge-mrp">MRP ₹1,599</span>
+                </div>
+                <img src="unspoken.jpg" alt="VELOCEES DE SCENT UNSPOKEN Extrait" class="stage-bottle-img">
+                <div class="stage-floating-card">
+                  <div class="stage-card-info">
+                    <h4>UNSPOKEN</h4>
+                    <p>50 ML &bull; Bordeaux Velvet &bull; 35% Oil</p>
+                  </div>
+                  <button class="stage-card-btn" onclick="window.velocees.addToCart('vd-unspoken', '50 ML', true);">
+                    Shop &bull; ₹949
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: MAISON ATELIER -->
+        <div class="carousel-slide slide-maison" data-slide="2">
+          <div class="container hero-slide-grid">
+            <div class="hero-text-col">
+              <span class="hero-tag">🖤 The Maison Philosophy</span>
+              <h1 class="hero-title">
+                HAUTE PARFUMERIE.<br>
+                <span class="gold-accent">ZERO COMPROMISE.</span>
+              </h1>
+              <p class="hero-description">
+                Direct from the fragrance capital of Grasse to your vanity. We strip away retail markups, excessive marketing, and diluted designer formulas to offer pure Extrait de Parfum intensity.
+              </p>
+              
+              <div class="hero-specs-grid-maison">
+                <div class="maison-spec-card">
+                  <div class="card-icon">🇫🇷</div>
+                  <div>
+                    <strong>Grasse Absolutes</strong>
+                    <p>Distilled in southern France</p>
+                  </div>
+                </div>
+                <div class="maison-spec-card">
+                  <div class="card-icon">⚡</div>
+                  <div>
+                    <strong>35% Pure Oil</strong>
+                    <p>Highest industry concentration</p>
+                  </div>
+                </div>
+                <div class="maison-spec-card">
+                  <div class="card-icon">🛡️</div>
+                  <div>
+                    <strong>IFRA Certified</strong>
+                    <p>Safe on skin & hypoallergenic</p>
+                  </div>
+                </div>
+                <div class="maison-spec-card">
+                  <div class="card-icon">🎁</div>
+                  <div>
+                    <strong>Complimentary Vial</strong>
+                    <p>On all orders above ₹999</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <a href="#catalog" class="btn-primary">
+                  <span>Explore Both Editions</span> <span>&rarr;</span>
+                </a>
+                <a href="firebase.html" class="btn-secondary">
+                  VIP Client Lounge
+                </a>
+              </div>
+            </div>
+
+            <!-- Slide Visual: Twin Show -->
+            <div class="hero-visual-col">
+              <div class="maison-twin-stage">
+                <div class="twin-seal-circle">
+                  <img src="fav.jpg" alt="VELOCEES Crest" class="twin-crest-img">
+                </div>
+                <div class="twin-bottles-wrapper">
+                  <div class="twin-bottle-item left-bottle" onclick="window.velocees.goToHeroSlide(0)">
+                    <img src="laventra.jpg" alt="LAVENTRA">
+                    <span class="twin-pill">LAVENTRA &bull; ₹899</span>
+                  </div>
+                  <div class="twin-bottle-item right-bottle" onclick="window.velocees.goToHeroSlide(1)">
+                    <img src="unspoken.jpg" alt="UNSPOKEN">
+                    <span class="twin-pill">UNSPOKEN &bull; ₹949</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CAROUSEL CONTROLS -->
+    <button class="carousel-arrow carousel-arrow-prev" id="carouselPrevBtn" aria-label="Previous Slide" onclick="window.velocees.prevHeroSlide();">
+      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button class="carousel-arrow carousel-arrow-next" id="carouselNextBtn" aria-label="Next Slide" onclick="window.velocees.nextHeroSlide();">
+      <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+
+    <!-- CAROUSEL INDICATORS -->
+    <div class="carousel-indicators-bar">
+      <button class="indicator-pill active" onclick="window.velocees.goToHeroSlide(0);">
+        <span class="indicator-num">01</span>
+        <span class="indicator-title">LAVENTRA</span>
+        <span class="indicator-progress"><span class="indicator-fill"></span></span>
+      </button>
+      <button class="indicator-pill" onclick="window.velocees.goToHeroSlide(1);">
+        <span class="indicator-num">02</span>
+        <span class="indicator-title">UNSPOKEN</span>
+        <span class="indicator-progress"><span class="indicator-fill"></span></span>
+      </button>
+      <button class="indicator-pill" onclick="window.velocees.goToHeroSlide(2);">
+        <span class="indicator-num">03</span>
+        <span class="indicator-title">MAISON ATELIER</span>
+        <span class="indicator-progress"><span class="indicator-fill"></span></span>
+      </button>
     </div>
   </section>
 
@@ -434,59 +654,193 @@
   <!-- TOAST NOTIFICATION -->
   <div class="toast-msg" id="toastMsg">Notification message</div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (BELLA VITA INSPIRATION REIMAGINED FOR VELOCEES DE SCENT 🖤) -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        
-        <div>
-          <h4 style="display: flex; align-items: center; gap: 8px;">
-            <img src="fav.jpg" width="24" height="24" style="border-radius: 50%; border: 1px solid var(--border-gold-subtle);" alt="VD">
-            VELOCEES DE SCENT 🖤
-          </h4>
-          <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 16px;">
-            A premier Indian & French perfumery house dedicated to bold, long-lasting Extrait de Parfums and opulent unisex scents. Formulated with imported essence oils from Grasse.
+      
+      <!-- EXCLUSIVE NEWSLETTER & VIP ATELIER SIGNUP -->
+      <div class="footer-newsletter-wrap">
+        <div class="newsletter-text-col">
+          <h3>EXCLUSIVE ATELIER PRIVILEGES 🖤</h3>
+          <p>
+            Sign up here to get the latest private reserve allocations, VIP scent vault news, and secret discount codes delivered directly to your inbox. 
+            Plus, receive an instant <strong>15% OFF</strong> voucher on your first order.
           </p>
-          <div style="font-size: 0.75rem; color: var(--color-gold-400); letter-spacing: 1.5px;">
-            🖤 ZERO-DATABASE JSON ENGINE ENABLED
+          <div class="footer-social-row">
+            <span>Follow Our Maison:</span>
+            <div class="footer-social-links">
+              <a href="https://instagram.com" target="_blank" class="social-link-icon" title="Instagram">IG</a>
+              <a href="https://twitter.com" target="_blank" class="social-link-icon" title="Twitter / X">X</a>
+              <a href="https://youtube.com" target="_blank" class="social-link-icon" title="YouTube">YT</a>
+              <a href="https://pinterest.com" target="_blank" class="social-link-icon" title="Pinterest">PIN</a>
+              <a href="https://facebook.com" target="_blank" class="social-link-icon" title="Facebook">FB</a>
+            </div>
           </div>
         </div>
 
-        <div class="footer-col">
-          <h4>Fragrance Creations</h4>
-          <ul class="footer-links">
-            <li><a href="#catalog" onclick="window.velocees.filterByNav('men')">LAVENTRA Extrait (50 ML Noir)</a></li>
-            <li><a href="#catalog" onclick="window.velocees.filterByNav('unisex')">UNSPOKEN Extrait (50 ML Wine)</a></li>
-            <li><a href="#catalog">Olfactory Note Guide</a></li>
-            <li><a href="#catalog">Custom Velvet Packaging</a></li>
+        <div class="newsletter-form-col">
+          <form onsubmit="event.preventDefault(); window.velocees.subscribeNewsletter(event);">
+            <input type="email" id="newsletterEmailInput" class="newsletter-input" placeholder="Enter your VIP email address..." required>
+            <button type="submit" class="newsletter-btn">Subscribe 🖤</button>
+          </form>
+          <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 10px;">
+            🔒 Zero spam. Unsubscribe anytime with one click.
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN 5-COLUMN FOOTER NAVIGATION -->
+      <div class="footer-grid-bella">
+        
+        <!-- COL 1: BESTSELLERS -->
+        <div class="footer-col-bella">
+          <h4>Bestsellers</h4>
+          <ul class="footer-links-bella">
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('all');">LAVENTRA Extrait (50 ML Noir)</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('all');">UNSPOKEN Extrait (50 ML Wine)</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('gift-sets');">Private Discovery Set (4x20 ML)</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('men');">Extrait For Him (16h Sillage)</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('women');">Extrait For Her (Velvet Floral)</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('unisex');">Unisex Seductive Parfums</a></li>
+            <li><a href="#catalog" onclick="window.velocees.searchFromFooter('oud');">Cambodian Aged Oud Collection</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h4>Client Experience</h4>
-          <ul class="footer-links">
-            <li><a href="#catalog">Track Consignment</a></li>
-            <li><a href="#catalog">Fragrance Note Guide</a></li>
-            <li><a href="#catalog">Authenticity & IFRA</a></li>
-            <li><a href="#catalog">Corporate Bespoke Gifting</a></li>
+        <!-- COL 2: INFORMATION -->
+        <div class="footer-col-bella">
+          <h4>Information</h4>
+          <ul class="footer-links-bella">
+            <li><a href="#catalog" onclick="window.velocees.searchFromFooter('pyramid');">Olfactory Notes & Pyramids</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('newsroom')">Maison Newsroom & Media</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('terms')">Terms & Conditions</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('privacy')">Client Privacy Policy</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('return')">7-Day Return & Fragrance Guarantee</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('shipping')">Express Delivery Policy</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('bulk')">Corporate Gifting & GST Invoices</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h4>Store Administration</h4>
-          <ul class="footer-links">
-            <li><a href="javascript:void(0)" onclick="window.velocees.toggleAdminMode()">⚡ Toggle Admin Mode</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.exportProductsJSON()">📥 Download products.json</a></li>
-            <li><a href="javascript:void(0)" onclick="window.velocees.resetToSeedJSON()">🔄 Restore Seed Catalog</a></li>
-            <li><a href="tokens-preview.html" target="_blank">🎨 Design System Tokens</a></li>
+        <!-- COL 3: SUPPORT -->
+        <div class="footer-col-bella">
+          <h4>Support</h4>
+          <ul class="footer-links-bella">
+            <li><a href="javascript:void(0)" onclick="window.velocees.goToHeroSlide(2);">The Maison Philosophy</a></li>
+            <li><a href="https://api.whatsapp.com/send/?phone=919810154380&text=Hello+Velocees+De+Scent+Concierge" target="_blank">Contact Atelier Concierge</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('tracking')">Live Dispatch Tracking</a></li>
+            <li><a href="#catalog" onclick="window.velocees.filterByNav('all');">Complete Scent Archive</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('faq')">Frequently Asked Questions</a></li>
+            <li><a href="tokens-preview.html" target="_blank">Design System Tokens</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.showPolicyToast('investor')">Investor Relations</a></li>
+          </ul>
+        </div>
+
+        <!-- COL 4: CONTACT US -->
+        <div class="footer-col-bella">
+          <h4>Contact Atelier</h4>
+          <p class="footer-contact-address">
+            <strong>VELOCEES DE SCENT 🖤 Penthouse</strong><br>
+            One International Centre, 24th Floor, Senapati Bapat Marg, High Street Road, Mumbai, Maharashtra 400013
+          </p>
+          <div class="footer-contact-meta">
+            <a href="https://api.whatsapp.com/send/?phone=919810154380&text=Hello+Velocees+De+Scent+Concierge" target="_blank" class="footer-whatsapp-btn">
+              💬 WhatsApp Concierge
+            </a>
+            <div class="footer-contact-item">
+              <strong>Hotline:</strong> +91 98101 54380
+            </div>
+            <div class="footer-contact-item">
+              <strong>Email:</strong> concierge@velocees.com
+            </div>
+            <div class="footer-contact-item">
+              <strong>Hours:</strong> 10:00 AM – 7:00 PM, Mon – Sun
+            </div>
+          </div>
+        </div>
+
+        <!-- COL 5: ATELIER ACCESS & STUDIO -->
+        <div class="footer-col-bella">
+          <h4>Atelier Studio</h4>
+          <ul class="footer-links-bella">
+            <li><a href="firebase.html">👑 VIP Client Login</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.toggleAdminMode();">⚡ Toggle Admin Mode</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.exportProductsJSON();">📥 Export products.json</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.resetToSeedJSON();">🔄 Restore Seed Catalog</a></li>
+            <li><a href="javascript:void(0)" onclick="window.velocees.openCart();">🛍️ View Fragrance Bag</a></li>
+            <li><a href="#catalog">✨ Free Discovery Vial (&gt; ₹999)</a></li>
           </ul>
         </div>
 
       </div>
 
+      <!-- SECURITY & AUTHENTICITY ADVISORY (SCAM ALERT) -->
+      <div class="footer-security-advisory">
+        <h5>
+          <span style="font-size: 1.1rem;">🛡️</span> CLIENT SECURITY & AUTHENTICITY ADVISORY
+        </h5>
+        <p>
+          We have noticed a rise in fraudulent calls, SMS, WhatsApp messages, and fake websites offering counterfeit fragrances. 
+          Please be aware that <strong>VELOCEES DE SCENT 🖤</strong> and its maison representatives never ask for your private banking OTPs, 
+          passwords, or direct UPI payments outside our official encrypted checkout. If you receive any suspicious communication, stay cautious 
+          and reach out immediately to our official concierge hotline <strong>+91 98101 54380</strong> or email <strong>concierge@velocees.com</strong>.
+        </p>
+      </div>
+
+      <!-- MOST SEARCHED OLFACTORY KEYWORDS (SEO CLOUD) -->
+      <div class="footer-keywords-section">
+        <div class="footer-keywords-title">Most Searched Olfactory Keywords &bull; Haute Parfumerie</div>
+        <div class="footer-keywords-cloud">
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('perfume');">Perfume</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('laventra');">Laventra Extrait</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('unspoken');">Unspoken Extrait</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('men');">Best perfume for men</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('women');">Best perfume for women</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('long lasting');">14h beast longevity</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('oud');">Cambodian Oud perfume</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('velvet');">Bordeaux velvet perfume</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('extrait');">35% Extrait de parfum</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('vanilla');">Madagascar bourbon vanilla</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('saffron');">Golden saffron & plum</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('rose');">Crimson rose velvet</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('bergamot');">French bergamot</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('amber');">Ambergris & tonka</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('gift');">Perfume gift sets</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('couples');">Wedding gifts for couples</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('men');">Gifts for men under 1000</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('women');">Gifts for women under 1000</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('unisex');">Intoxicating date night scent</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('discovery');">Discovery box</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('corporate');">Corporate luxury gifting</a>
+          <a class="footer-keyword-pill" onclick="window.velocees.searchFromFooter('grasse');">Imported Grasse oils</a>
+        </div>
+      </div>
+
+      <!-- PAYMENT METHODS & TRUST STRIP -->
+      <div class="footer-payment-strip">
+        <div class="payment-methods-list">
+          <span style="font-size: 0.72rem; color: var(--color-gold-400); font-weight: 700; margin-right: 6px; letter-spacing: 1px;">PAYMENT METHODS:</span>
+          <span class="payment-pill">Instant UPI</span>
+          <span class="payment-pill">GPay</span>
+          <span class="payment-pill">PhonePe</span>
+          <span class="payment-pill">Paytm</span>
+          <span class="payment-pill">RuPay</span>
+          <span class="payment-pill">Visa</span>
+          <span class="payment-pill">Mastercard</span>
+          <span class="payment-pill">NetBanking</span>
+          <span class="payment-pill">Cash on Delivery</span>
+        </div>
+
+        <div class="trust-seals-list">
+          <div class="trust-seal"><span class="trust-seal-icon">🔒</span> 256-Bit SSL Encrypted</div>
+          <div class="trust-seal"><span class="trust-seal-icon">🇫🇷</span> 100% Grasse Essence</div>
+          <div class="trust-seal"><span class="trust-seal-icon">🛡️</span> IFRA Certified</div>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT -->
       <div class="footer-bottom">
-        &copy; 2026 VELOCEES DE SCENT 🖤 (VD Atelier). All Rights Reserved. Crafted with Vanilla CSS & Pure JSON Store.
+        &copy; 2026 VELOCEES DE SCENT 🖤 (VD Haute Parfumerie Atelier). All Rights Reserved. Inspired by Bella Vita Organic. Built with Vanilla CSS & Pure JSON Store.
       </div>
+
     </div>
   </footer>
 
@@ -532,6 +886,6 @@
   </script>
 
   <!-- Core App Logic -->
-  <script src="app.js"></script>
+  <script src="app.js?v=20261022_v6_footer"></script>
 </body>
 </html>

@@ -70,6 +70,7 @@
     checkLoggedInUser();
     await loadProductsJSON();
     setupEventListeners();
+    initHeroCarousel();
     renderProducts();
     updateCartUI();
   }
@@ -123,28 +124,91 @@
     updateAdminStats();
   }
 
-  function switchHero(scent) {
-    const img = document.getElementById('heroBottleImg');
-    const title = document.getElementById('heroBottleTitle');
-    const sub = document.getElementById('heroBottleSub');
-    const btn = document.getElementById('heroBuyBtn');
-    const btnLav = document.getElementById('heroBtnLaventra');
-    const btnUn = document.getElementById('heroBtnUnspoken');
+  // --- HERO CAROUSEL CONTROLLER ---
+  let currentHeroSlide = 0;
+  const TOTAL_HERO_SLIDES = 3;
+  let heroAutoTimer = null;
+  const HERO_SLIDE_DURATION = 5500;
 
+  function initHeroCarousel() {
+    const carouselSection = document.getElementById('heroCarousel');
+    if (!carouselSection) return;
+
+    startHeroAutoTimer();
+
+    // Pause on hover
+    carouselSection.addEventListener('mouseenter', stopHeroAutoTimer);
+    carouselSection.addEventListener('mouseleave', startHeroAutoTimer);
+
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    carouselSection.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        touchStartX = e.touches[0].screenX;
+      }
+    }, { passive: true });
+
+    carouselSection.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches[0]) {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) {
+            nextHeroSlide();
+          } else {
+            prevHeroSlide();
+          }
+        }
+      }
+    }, { passive: true });
+  }
+
+  function startHeroAutoTimer() {
+    stopHeroAutoTimer();
+    heroAutoTimer = setInterval(() => {
+      nextHeroSlide();
+    }, HERO_SLIDE_DURATION);
+  }
+
+  function stopHeroAutoTimer() {
+    if (heroAutoTimer) {
+      clearInterval(heroAutoTimer);
+      heroAutoTimer = null;
+    }
+  }
+
+  function goToHeroSlide(index) {
+    currentHeroSlide = (index + TOTAL_HERO_SLIDES) % TOTAL_HERO_SLIDES;
+    updateHeroSlideDOM();
+    startHeroAutoTimer();
+  }
+
+  function nextHeroSlide() {
+    goToHeroSlide(currentHeroSlide + 1);
+  }
+
+  function prevHeroSlide() {
+    goToHeroSlide(currentHeroSlide - 1);
+  }
+
+  function updateHeroSlideDOM() {
+    const slides = document.querySelectorAll('#heroCarouselTrack .carousel-slide');
+    const pills = document.querySelectorAll('.carousel-indicators-bar .indicator-pill');
+
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === currentHeroSlide);
+    });
+
+    pills.forEach((pill, idx) => {
+      pill.classList.toggle('active', idx === currentHeroSlide);
+    });
+  }
+
+  function switchHero(scent) {
     if (scent === 'unspoken') {
-      if (img) img.src = 'unspoken.jpg';
-      if (title) title.textContent = 'UNSPOKEN';
-      if (sub) sub.innerHTML = '50 ML &bull; Bordeaux Velvet Extrait &bull; 35% Oil';
-      if (btn) btn.setAttribute('onclick', "window.velocees.addToCart('vd-unspoken', '50 ML', true);");
-      if (btnLav) btnLav.classList.remove('active');
-      if (btnUn) btnUn.classList.add('active');
+      goToHeroSlide(1);
     } else {
-      if (img) img.src = 'laventra.jpg';
-      if (title) title.textContent = 'LAVENTRA';
-      if (sub) sub.innerHTML = '50 ML &bull; Black Velvet Extrait &bull; 35% Oil';
-      if (btn) btn.setAttribute('onclick', "window.velocees.addToCart('vd-laventra', '50 ML', true);");
-      if (btnLav) btnLav.classList.add('active');
-      if (btnUn) btnUn.classList.remove('active');
+      goToHeroSlide(0);
     }
   }
 
@@ -358,6 +422,16 @@
     if (currentCategory !== 'all') {
       if (currentCategory === 'under-899') {
         filtered = filtered.filter(p => p.price <= 899);
+      } else if (currentCategory === 'bestseller') {
+        filtered = filtered.filter(p => (p.rating >= 4.8) || (p.badge && (p.badge.includes('SIGNATURE') || p.badge.includes('BORDEAUX'))));
+      } else if (currentCategory === 'gift-sets') {
+        filtered = filtered.filter(p => p.category === 'gift-sets' || (p.name && p.name.toLowerCase().includes('discovery')) || (p.badge && p.badge.toLowerCase().includes('discovery')));
+      } else if (currentCategory === 'women') {
+        filtered = filtered.filter(p => p.category === 'women' || (p.gender && p.gender.toLowerCase().includes('women')));
+      } else if (currentCategory === 'men') {
+        filtered = filtered.filter(p => p.category === 'men' || (p.gender && p.gender.toLowerCase().includes('men')));
+      } else if (currentCategory === 'unisex') {
+        filtered = filtered.filter(p => p.category === 'unisex' || (p.gender && p.gender.toLowerCase().includes('unisex')));
       } else {
         filtered = filtered.filter(p => p.category === currentCategory);
       }
@@ -765,6 +839,41 @@
     }, 3200);
   }
 
+  // --- CATEGORY SUB-NAV / LINK FILTERING ---
+  function filterByNav(category, clickedElement) {
+    currentCategory = category || 'all';
+
+    // Synchronize Sub-Nav Links
+    const subnavLinks = document.querySelectorAll('.subnav-link, .nav-link');
+    subnavLinks.forEach(link => {
+      const targetCat = link.getAttribute('data-subnav') || link.getAttribute('data-category');
+      if (targetCat === currentCategory) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Synchronize Catalog Category Pills
+    const pills = document.querySelectorAll('.pill-btn');
+    pills.forEach(pill => {
+      const pillCat = pill.getAttribute('data-category');
+      if (pillCat === currentCategory) {
+        pill.classList.add('active');
+      } else {
+        pill.classList.remove('active');
+      }
+    });
+
+    renderProducts();
+
+    // Smooth scroll to catalog
+    const catalogEl = document.getElementById('catalog');
+    if (catalogEl) {
+      catalogEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   // --- EVENT LISTENERS ---
   function setupEventListeners() {
     // Category pills filter
@@ -773,6 +882,18 @@
         categoryPills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
         currentCategory = pill.getAttribute('data-category');
+
+        // Synchronize Sub-Nav Links
+        const subnavLinks = document.querySelectorAll('.subnav-link, .nav-link');
+        subnavLinks.forEach(link => {
+          const targetCat = link.getAttribute('data-subnav') || link.getAttribute('data-category');
+          if (targetCat === currentCategory) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
         renderProducts();
       });
     });
@@ -783,11 +904,24 @@
       renderProducts();
     });
 
-    // Search input
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim();
-      renderProducts();
-    });
+    // Search inputs (Desktop & Mobile)
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        const mobInput = document.getElementById('mobileSearchInput');
+        if (mobInput) mobInput.value = searchQuery;
+        renderProducts();
+      });
+    }
+
+    const mobileSearchInput = document.getElementById('mobileSearchInput');
+    if (mobileSearchInput) {
+      mobileSearchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        if (searchInput) searchInput.value = searchQuery;
+        renderProducts();
+      });
+    }
 
     // Cart Drawer triggers
     cartToggleBtn.addEventListener('click', openCartDrawer);
@@ -869,8 +1003,76 @@
     ];
   }
 
-  // Expose namespace to window for HTML onclick attributes
-  window.velocees = {
+  function toggleMobileSearch(forceState) {
+    const dropdown = document.getElementById('mobileSearchDropdown');
+    const input = document.getElementById('mobileSearchInput');
+    if (!dropdown) return;
+
+    if (typeof forceState === 'boolean') {
+      dropdown.classList.toggle('open', forceState);
+    } else {
+      dropdown.classList.toggle('open');
+    }
+
+    if (dropdown.classList.contains('open') && input) {
+      setTimeout(() => input.focus(), 80);
+    }
+  }
+
+  // --- FOOTER & NEWSLETTER HELPERS ---
+  function subscribeNewsletter(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const input = document.getElementById('newsletterEmailInput');
+    if (!input || !input.value) return;
+
+    const email = input.value.trim();
+    try {
+      const subs = JSON.parse(localStorage.getItem('velocees_subscribers') || '[]');
+      if (!subs.includes(email)) {
+        subs.push(email);
+        localStorage.setItem('velocees_subscribers', JSON.stringify(subs));
+      }
+    } catch (err) {}
+
+    // Automatically copy promo code LUXE15
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText('LUXE15').catch(() => {});
+    }
+
+    input.value = '';
+    showToast(`✨ Welcome to the Maison! Code LUXE15 (15% OFF) copied to clipboard.`);
+  }
+
+  function searchFromFooter(term) {
+    searchQuery = term;
+    if (searchInput) searchInput.value = term;
+    const mobInput = document.getElementById('mobileSearchInput');
+    if (mobInput) mobInput.value = term;
+    renderProducts();
+
+    const catalogEl = document.getElementById('catalog');
+    if (catalogEl) {
+      catalogEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function showPolicyToast(type) {
+    const policies = {
+      'terms': 'Terms & Conditions: All VELOCEES DE SCENT extraits are handcrafted with 35% oil concentration. Non-refundable once unsealed.',
+      'privacy': 'Privacy Policy: We maintain encrypted 256-bit client records and never share your details with third parties.',
+      'return': '7-Day Olfactory Guarantee: Damaged or defective deliveries are replaced with complimentary express dispatch.',
+      'shipping': 'Express Shipping: All domestic orders dispatched within 24h via BlueDart & Delhivery VIP Air.',
+      'bulk': 'Corporate Gifting: Bespoke engraved bottles & GST invoices available for quantities > 10 units.',
+      'tracking': 'Live Tracking: Enter your Order ID received via WhatsApp / SMS into your VIP portal.',
+      'faq': 'FAQ: Our Extrait de Parfums offer 14-16 hours longevity with 35% oil concentration.',
+      'investor': 'Investor Relations: Maison VELOCEES is privately held under VD Haute Parfumerie Atelier.',
+      'newsroom': 'Newsroom: VELOCEES DE SCENT featured for redefining pocket-friendly luxury parfums.'
+    };
+    showToast(policies[type] || 'Maison policy details updated in your client portal.');
+  }
+
+  // Expose namespace to window for HTML onclick attributes safely
+  window.velocees = Object.assign(window.velocees || {}, {
     addToCart,
     addCurrentSizeToCart,
     selectSize,
@@ -884,11 +1086,20 @@
     toggleAdminMode,
     openAddModal,
     openEditModal,
+    closeAdminModal,
     deleteProduct,
     exportProductsJSON,
     resetToSeedJSON,
-    switchHero
-  };
+    switchHero,
+    goToHeroSlide,
+    nextHeroSlide,
+    prevHeroSlide,
+    toggleMobileSearch,
+    subscribeNewsletter,
+    searchFromFooter,
+    showPolicyToast,
+    filterByNav
+  });
 
   // Run on DOM Ready
   if (document.readyState === 'loading') {
